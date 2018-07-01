@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -32,11 +34,11 @@ class UsersController extends Controller
         ]);
     }
     
-    public function update(Request,$request,$id)
+    public function update(Request $request,$id)
     {
         $user = User::find($id);
-        $user->name=>$request->name;
-        $user->email=>$request->email;
+        $user->name=$request->name;
+        $user->email=$request->email;
         $user->save();
         return view('users.show', [
             'user' => $user,
