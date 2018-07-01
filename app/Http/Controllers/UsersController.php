@@ -15,7 +15,7 @@ class UsersController extends Controller
         ]);
     }
     
-    public function show()
+    public function show($id)
     {
         $user = User::find($id);
 
@@ -24,7 +24,7 @@ class UsersController extends Controller
         ]);
     }
     
-    public function edit()
+    public function edit($id)
     {
         $user = User::find($id);
         return view('users.edit', [
@@ -32,7 +32,7 @@ class UsersController extends Controller
         ]);
     }
     
-    public function update()
+    public function update(Request,$request,$id)
     {
         $user = User::find($id);
         $user->name=>$request->name;
@@ -43,7 +43,7 @@ class UsersController extends Controller
         ]);
     }
     
-    public function destroy()
+    public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
