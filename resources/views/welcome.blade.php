@@ -2,8 +2,8 @@
 
 @section('content')
     @if (Auth::check())
-        <?php $user = Auth::user(); ?>
-        {{ $user->name }}
+        <?php $user = Auth::user(); ?>//閲覧者がログイン中ならそのユーザーを取得して
+        {{ $user->name }}//ユーザーネームを表示
     @else
         <div class="center jumbotron">
             <div class="text-center">
