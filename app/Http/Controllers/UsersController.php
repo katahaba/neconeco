@@ -56,4 +56,39 @@ class UsersController extends Controller
         $user->delete();
         return redirect('/');
     }
+    
+// followings,followersアクション  
+    //'user' => $user(操作者), 'users' => $followings(フォローしてる人たち)とその数のデータ変数を作ってviewに渡している  
+
+        public function followings($id)
+    {
+        $user = User::find($id);
+        $followings = $user->followings()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'users' => $followings,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.followings', $data);
+    }
+    
+    //'user' => $user(操作者), 'users' => $followers(フォロワーさんたち)とその数のデータ変数を作ってviewに渡している  
+
+    public function followers($id)
+    {
+        $user = User::find($id);
+        $followers = $user->followers()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'users' => $followers,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.followers', $data);
+    }
 }

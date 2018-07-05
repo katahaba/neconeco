@@ -14,7 +14,8 @@
             </div>
         </div>
     </li>
-@endforeach
+@endforeach'user' => $user,
+            'users' => $followings,
 </ul>
 {!! $users->render() !!}
 @endif

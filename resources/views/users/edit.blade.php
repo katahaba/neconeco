@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>id: {{ $user->id }} の名前編集ページ</h1>//{{ ['id'=>Auth::id() }}みたいなやつの方がいいのかな？->必要ない
+    <h1>id: {{ $user->id }} の名前編集ページ</h1>
 
     @if (count($errors) > 0)
         <ul>

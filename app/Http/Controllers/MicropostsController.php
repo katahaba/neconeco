@@ -19,17 +19,17 @@ class MicropostsController extends Controller
             $data += $this->counts($user);
             return view('users.show', $data);
         }else{
-            return view('welcom');
+            return view('welcome');
         }
     }
     
-    public function store()
+    public function store(Request $request)
     {
-        $this->validate($request, ['content'=> 'required|mac:191',]);
+        $this->validate($request, ['content'=> 'required|max:191',]);
         
         $request->user()->microposts()->create(['content' => $request->content,]);
         
-        return redirect()->back;
+        return redirect()->back();
     }
 
      public function destroy($id)
