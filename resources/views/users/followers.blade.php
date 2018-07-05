@@ -1,3 +1,5 @@
+<!--UsersControllerのfollowersアクションのreturn view('users.followers', $data);でデータをもたされて表示される-->
+
 @extends('layouts.app')
 
 @section('content')
