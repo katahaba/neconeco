@@ -30,32 +30,34 @@ class UsersController extends Controller
         return view('users.show', $data);
     }
    
+//今回はユーザー情報を改変したりしない    
+    // public function edit($id)
+    // {
+    //     $user = User::find($id);
+    //     return view('users.edit', [
+    //         'user' => $user,
+    //     ]);
+    // }
     
-    public function edit($id)
-    {
-        $user = User::find($id);
-        return view('users.edit', [
-            'user' => $user,
-        ]);
-    }
+    // public function update(Request $request,$id)
+    // {
+    //     $user = User::find($id);
+    //     $user->name=$request->name;
+    //     $user->email=$request->email;
+    //     $user->save();
+    //     return view('users.show', [
+    //         'user' => $user,
+    //     ]);
+    // }
     
-    public function update(Request $request,$id)
-    {
-        $user = User::find($id);
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->save();
-        return view('users.show', [
-            'user' => $user,
-        ]);
-    }
-    
-    public function destroy($id)
-    {
-        $user = User::find($id);
-        $user->delete();
-        return redirect('/');
-    }
+    // public function destroy($id)
+    // {
+    //     $user = User::find($id);
+    //     $user->delete();
+    //     return redirect('/');
+    // }
+
+
     
 // followings,followersアクション  
     
@@ -82,7 +84,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $followers = $user->followers()->paginate(10);
-
+        
         $data = [
             'user' => $user,
             'users' => $followers,
@@ -91,5 +93,22 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.followers', $data);
+    }
+    
+    
+    public function favoritings($id)
+    {
+        $user = User::find($id);
+        $favoritings = $user->favoritings()->paginate(10);
+        
+        $data = [
+            'user' => $user,
+            'favoritings' => $favoritings,
+            //view:users.favoritingsで$favoritingsと呼び出すことで、ユーザーAのファヴォしたmicroposの一覧が表示される
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.favoritings', $data);
     }
 }

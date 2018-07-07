@@ -14,10 +14,10 @@ class MicropostsController extends Controller
             //$user->microposts()から$user->feed_microposts()にすることで該当ユーザーのフォローしてるひとのpostsも取得しているー＞タイムライン対応
             $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
             
-            $data = ['user' => $user,
-            'microposts' => $microposts,
+            $data = [
+                'user' => $user,
+                'microposts' => $microposts,
             ];
-            $data += $this->counts($user);
         }
             return view('welcome', $data);
     }

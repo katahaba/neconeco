@@ -32,8 +32,8 @@ class User extends Authenticatable
     }
     
 
-//多:多の表現
-    public function followings()//フォローしている関係になるユーザーたちを獲得
+//follow: User-User間の多:多の表現
+    public function followings()//自分がフォローしているユーザーたちを獲得
     {
         return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
     }
@@ -73,20 +73,64 @@ class User extends Authenticatable
             $this->followings()->detach($userId);
             return true;
         } else {
-            // 未フォローであれば何もしない
+            // 未フォローをunfollowしようとしたときは何もしないでfalseを返す
             return false;
         }
     }
-//操作しようとしている対象のIDがすでにfollow_idカラムに存在しているかどうか=既followかどうかの判定関数
+    //操作しようとしている対象のIDがすでにfollow_idカラムに存在しているかどうか=既followかどうかの判定関数
     public function is_following($userId) {
         return $this->followings()->where('follow_id', $userId)->exists();
     }
 
-//タイムラインにフォローしてる人と自分のmicropostsを表示するためのメソッド
+    //タイムライン=(フォローしてる人+自分)のmicropostsを表示するためのメソッド
+    // 最後に return Micropost::whereIn('user_id', $follow_user_ids); では、 microposts テーブルの user_id カラムで $follow_user_ids の中の id を含む場合に、全て取得して return します。
     public function feed_microposts()
     {
         $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
         $follow_user_ids[] = $this->id;
         return Micropost::whereIn('user_id', $follow_user_ids);
     }
+
+
+//favorite: User-Micropost間の多：多の表現
+    public function favoritings()//自分がファヴォているmicropostたちを獲得
+    {
+        return $this->belongsToMany(Micropost::class, 'favorites', 'user_id' ,'micropost_id')->withTimestamps();
+    }
+    
+    public function favorite($micropostId)
+    {
+        // 既にファヴォしているかの確認
+        $exist = $this->is_favoriting($micropostId);
+        
+        if ($exist) {
+            // 既にファヴォしていれば何もしない
+            return false;
+        } else {
+            // 未ファヴォであればファヴォする
+            $this->favoritings()->attach($micropostId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($micropostId)
+    {
+        // 既にファヴォしているかの確認
+        $exist = $this->is_favoriting($micropostId);
+    
+        if ($exist) {
+            // 既にファヴォしていればファヴォを外す
+            $this->favoritings()->detach($micropostId);
+            return true;
+        } else {
+            // 未ファヴォであれば何もしない
+            return false;
+        }
+    }
+    
+    //ファヴォしているかのチェックメソッド（ID検索）
+    public function is_favoriting($micropostId) {
+        return $this->favoritings()->where('micropost_id', $micropostId)->exists();
+    }
+
 }
