@@ -16,10 +16,12 @@ class CreateMicropostsTable extends Migration
         Schema::create('microposts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('content');
+            $table->string('image_path');
+            $table->string('search_tag')->nullable()->default(null);
+            $table->string('map')->nullable()->default(null);
             $table->timestamps();
             //外部キー制約
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

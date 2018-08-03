@@ -23,45 +23,44 @@ class UsersController extends Controller
         $user = User::find($id);
         $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
 
-        $data = ['user' => $user,'microposts' => $microposts,];
+        $data = ['user' => $user,'microposts' => $microposts];
 
         $data += $this->counts($user);
 
         return view('users.show', $data);
     }
    
-//今回はユーザー情報を改変したりしない    
-    // public function edit($id)
-    // {
-    //     $user = User::find($id);
-    //     return view('users.edit', [
-    //         'user' => $user,
-    //     ]);
-    // }
+//ユーザー情報　編集    
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('users.edit', ['user' => $user,]);
+    }
     
-    // public function update(Request $request,$id)
-    // {
-    //     $user = User::find($id);
-    //     $user->name=$request->name;
-    //     $user->email=$request->email;
-    //     $user->save();
-    //     return view('users.show', [
-    //         'user' => $user,
-    //     ]);
-    // }
+    public function update(Request $request,$id)
+    {
+        $user = User::find($id);
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->save();
+        return view('users.show', [
+            'user' => $user,
+        ]);
+    }
     
-    // public function destroy($id)
-    // {
-    //     $user = User::find($id);
-    //     $user->delete();
-    //     return redirect('/');
-    // }
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/');
+    }
 
 
     
 // followings,followersアクション  
     
 // 'user' => $user(操作者), 'users' => $followings(フォローしてる人たち)とその数のデータ変数を作ってviewに渡している  
+//followingsとfollowersをまとめてusers.users.blade.phpで表示しているためusersという名前で渡して、$usersでviewで受け取っている。
 
     public function followings($id)
     {
