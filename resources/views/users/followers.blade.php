@@ -1,5 +1,3 @@
-<!--UsersControllerのfollowersアクションのreturn view('users.followers', $data);でデータをもたされて表示される-->
-
 @extends('layouts.app')
 
 @section('content')
@@ -8,9 +6,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ $user->name }}</h3>
+                    @if(Auth::id() == $user->id)
+                        <a href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>
+                    @endif
                 </div>
                 <div class="panel-body">
-                    <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->email, 500) }}" alt="">
+                    <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->email, 50) }}" alt="">
                 </div>
             </div>
             @include('user_follow.follow_button', ['user' => $user])

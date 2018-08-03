@@ -27,12 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
+    
     public function microposts(){
         return $this->hasMany(Micropost::class);
     }
     
 
-//follow: User-User間の多:多の表現
+
+
+    //follow: User-User間の多:多の表現
     public function followings()//自分がフォローしているユーザーたちを獲得
     {
         return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
@@ -41,6 +44,12 @@ class User extends Authenticatable
     public function followers()//フォローしてくれてる関係になるユーザーたちを獲得
     {
         return $this->belongsToMany(User::class, 'user_follow', 'follow_id', 'user_id')->withTimestamps();
+    }
+    
+    
+    //操作しようとしている$userIDがすでにfollow_idカラムに存在しているかどうか=既followかどうかの判定関数
+    public function is_following($userId) {
+        return $this->followings()->where('follow_id', $userId)->exists();
     }
     
     
@@ -61,6 +70,7 @@ class User extends Authenticatable
         }
     }
 
+    
     public function unfollow($userId)
     {
         // 既にフォローしているかの確認boolian
@@ -77,10 +87,9 @@ class User extends Authenticatable
             return false;
         }
     }
-    //操作しようとしている対象のIDがすでにfollow_idカラムに存在しているかどうか=既followかどうかの判定関数
-    public function is_following($userId) {
-        return $this->followings()->where('follow_id', $userId)->exists();
-    }
+    
+    
+    
 
     //タイムライン=(フォローしてる人+自分)のmicropostsを表示するためのメソッド
     // 最後に return Micropost::whereIn('user_id', $follow_user_ids); では、 microposts テーブルの user_id カラムで $follow_user_ids の中の id を含む場合に、全て取得して return します。
@@ -92,11 +101,18 @@ class User extends Authenticatable
     }
 
 
-//favorite: User-Micropost間の多：多の表現
+    //favorite: User-Micropost間の多：多の表現
     public function favoritings()//自分がファヴォているmicropostたちを獲得
     {
         return $this->belongsToMany(Micropost::class, 'favorites', 'user_id' ,'micropost_id')->withTimestamps();
     }
+    
+   
+    //ファヴォしているかのチェックメソッド（ID検索）
+    public function is_favoriting($micropostId) {
+        return $this->favoritings()->where('micropost_id', $micropostId)->exists();
+    }
+    
     
     public function favorite($micropostId)
     {
@@ -126,11 +142,6 @@ class User extends Authenticatable
             // 未ファヴォであれば何もしない
             return false;
         }
-    }
-    
-    //ファヴォしているかのチェックメソッド（ID検索）
-    public function is_favoriting($micropostId) {
-        return $this->favoritings()->where('micropost_id', $micropostId)->exists();
     }
 
 }

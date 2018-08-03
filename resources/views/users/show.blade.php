@@ -1,22 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (\Session::has('success'))
-        <div class="alert alert-success">{!! \Session::get('success') !!}</div>
-    @endif
     <div class="row">
         <aside class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ $user->name }}</h3>
+                    @if(Auth::id() == $user->id)
+                        <a href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>
+                    @endif
                 </div>
                 <div class="panel-body">
-                    <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->email, 500) }}" alt="">
+                    <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->email, 50) }}" alt="">
                 </div>
             </div>
-            
             @include('user_follow.follow_button', ['user' => $user])
-            
         </aside>
         <div class="col-xs-8">
             <ul class="nav nav-tabs nav-justified">
@@ -28,16 +26,18 @@
                 <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
                 <li role="presentation" class="{{ Request::is('users/*/favoritings') ? 'active' : '' }}"><a href="{{ route('users.favoritings', ['id' => $user->id]) }}">Favo_Photos  <span class="badge">{{ $count_favoritings }}</span></a></li>
             </ul>
+        </div>    
            
-			
-            <div class="container">
-    			<ul class="sortable">
-            		@foreach ($microposts as $micropost)
-            	   		<a id="{{$micropost->id}}" class="block" href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
-            		@endforeach
-            	</ul>
-        	</div>
-	
+    </div>
+	<div class="row">	
+	 @if (\Session::has('success'))
+                    <div class="alert alert-success">{!! \Session::get('success') !!}</div>
+    @endif
+		<ul class="sortable">
+    		@foreach ($microposts as $micropost)
+    	   		<a id="{{$micropost->id}}" class="block" href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
+    		@endforeach
+    	</ul>
+	</div>
 	{!! $microposts->render() !!}
-
 @endsection

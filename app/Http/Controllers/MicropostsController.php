@@ -58,7 +58,7 @@ class MicropostsController extends Controller
  
         $fileName = $input['filename']->getClientOriginalName();
         $fileName = time()."@".$fileName;
-        
+        //写真用外部ライブラリ、Intervention Imageを使用
         $image = Image::make($input['filename']->getRealPath());
         //画像リサイズ
         $image->resize(null, 300, function ($constraint) {
@@ -71,7 +71,7 @@ class MicropostsController extends Controller
         $micropost->image_path = 'storage/images/' .  $fileName;
         $micropost->save();
         
-        return back()->with('message','ファイルはアップロードされました。');
+        return redirect()->route('users.show', ['id' => \Auth::id()])->with('success','ファイルはアップロードされました。');
     }
     
 
