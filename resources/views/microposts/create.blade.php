@@ -38,6 +38,7 @@
                             <p>(写真サイズは3Mb以下です。)</p>
                             {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
                                 {!! Form::file('filename') !!}
+                                <div id="map" style="width:400px; height:300px"></div>
                                 {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
                             {!! Form::close() !!}
                         </div>

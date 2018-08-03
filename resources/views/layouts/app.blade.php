@@ -6,13 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Microposts</title>
-
-        <!-- Bootstrap -->
+        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+        <script type="text/javascript" charset="utf-8" src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-"></script>
     </head>
     <body>
         @include('commons.navbar')
@@ -46,6 +47,12 @@
                     });
                 }
             });
+        </script>
+        <script type="text/javascript">
+            window.onload = function(){
+                var ymap = new Y.Map("map");
+                ymap.drawMap(new Y.LatLng(35.66572, 139.73100), 17, Y.LayerSetId.NORMAL);
+            }
         </script>
     </body>
 </html>
