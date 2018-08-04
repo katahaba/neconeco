@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('user_image_path')->nullable()->default(null);
+            $table->string('fovo_photos_order')->nullable()->default(null);
         });
     }
 

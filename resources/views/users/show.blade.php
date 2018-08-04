@@ -40,4 +40,5 @@
     	</ul>
 	</div>
 	{!! $microposts->render() !!}
+<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

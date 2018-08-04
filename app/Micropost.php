@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Micropost extends Model
 {
-    protected $fillable = ['user_id', 'image_path', 'search_tag', 'map'];
+    protected $fillable = [
+        'user_id', 'image_path', 'search_tag', 'map_lat', 'map_long'
+    ];
     
     public function user()
     {

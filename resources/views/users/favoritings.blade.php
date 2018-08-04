@@ -25,7 +25,10 @@
                 <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
                 <li role="presentation" class="{{ Request::is('users/*/favoritings') ? 'active' : '' }}"><a href="{{ route('users.favoritings', ['id' => $user->id]) }}">Favo_Photos  <span class="badge">{{ $count_favoritings }}</span></a></li>
             </ul>
-            @include('microposts.microposts', ['microposts' => $favoritings])
         </div>
     </div>
+    <div>
+        @include('microposts.microposts', ['microposts' => $favoritings])
+    </div>
+<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

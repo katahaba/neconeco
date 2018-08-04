@@ -26,25 +26,26 @@
                 <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
                 <li role="presentation" class="{{ Request::is('users/*/favoritings') ? 'active' : '' }}"><a href="{{ route('users.favoritings', ['id' => $user->id]) }}">Favo_Photos <span class="badge">{{ $count_favoritings }}</span></a></li>
             </ul>
-           
-            @if (Auth::id() == $user->id)
-                @if (\Session::has('success'))
-                    <div class="alert alert-success">{!! \Session::get('success') !!}</div>
-                @endif
-                <div class="row">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Media Upload</h4>
-                        <div class="panel-body">
-                            <p>(写真サイズは3Mb以下です。)</p>
-                            {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                                {!! Form::file('filename') !!}
-                                <div id="map" style="width:400px; height:300px"></div>
-                                {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                </div>
-            @endif
-        </div>
+        </div> 
     </div>
+    @if (Auth::id() == $user->id)
+    <div class="row">
+        <div class="panel-heading">
+            <h4 class="panel-title">Upload</h4>
+            <div class="panel-body">
+                <p>写真選択</p>
+                <p>(写真サイズは3Mb以下です。)</p>
+                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
+                    {!! Form::file('filename') !!}
+                    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+                {!! Form::close() !!}
+               <p>撮影場所登録</p>
+               <p>地図中心位置を撮影場所として保存(任意)。</p>
+                <div id="map" style="width: 350px; height: 350px;"></div>
+            </div>
+        </div>   
+    </div>
+    @endif
+<script type="text/javascript" charset="utf-8" src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-"></script>
+<script src="{{ secure_asset('js/load_map.js') }}"></script>
 @endsection
