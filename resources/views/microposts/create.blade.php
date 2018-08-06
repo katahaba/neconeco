@@ -33,19 +33,24 @@
         <div class="panel-heading">
             <h4 class="panel-title">Upload</h4>
             <div class="panel-body">
-                <p>写真選択</p>
-                <p>(写真サイズは3Mb以下です。)</p>
-                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                    {!! Form::file('filename') !!}
-                    {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
-                {!! Form::close() !!}
-               <p>撮影場所登録</p>
-               <p>地図中心位置を撮影場所として保存(任意)。</p>
+                <p><撮影場所></p>
+                <p>中心位置を撮影場所として保存(任意)</p>
                 <div id="map" style="width: 350px; height: 350px;"></div>
+            </div>
+            <div class="panel-body">
+                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
+                    <!--{!! Form::label('photo', 'photo') !!}-->
+                    {!! Form::file('photo') !!}
+                    <p>(写真サイズは必須で3Mb以下です。)</p>
+                    {!! Form::label('search_tag', 'search_tag') !!}
+                    {!! Form::text('search_tag') !!}
+                    {!! Form::submit('Submit', ['class' => 'btn btn-primary', 'id' => 'button']) !!}
+                    {!! Form::hidden('lat') !!}
+                    {!! Form::hidden('long') !!}
+                {!! Form::close() !!}
             </div>
         </div>   
     </div>
     @endif
-<script type="text/javascript" charset="utf-8" src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-"></script>
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
 @endsection

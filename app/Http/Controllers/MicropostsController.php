@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
 use Storage;
@@ -41,7 +40,6 @@ class MicropostsController extends Controller
     public function create()
     {
         $data = [];
-        //user()はobjectらしい
         $user = \Auth::user();
         $microposts =$user->microposts();
         $data = ['user' => $user, 'microposts' => $microposts];
@@ -54,12 +52,20 @@ class MicropostsController extends Controller
     
     public function store(Request $request)
     {
+        $request->user()->microposts()->create([
+            'image_path' => $request->photo,
+            'lat' => $request->lat,
+            'long' => $request->long,
+            'search-tag' => $request->search_tag,
+        ]);
+        
+        
         $input = $request->all();
- 
-        $fileName = $input['filename']->getClientOriginalName();
+      
+        $fileName = $input['photo']->getClientOriginalName();
         $fileName = time()."@".$fileName;
         //写真用外部ライブラリ、Intervention Imageを使用
-        $image = Image::make($input['filename']->getRealPath());
+        $image = Image::make($input['photo']->getRealPath());
         //画像リサイズ
         $image->resize(null, 300, function ($constraint) {
         $constraint->aspectRatio();
