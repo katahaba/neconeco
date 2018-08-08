@@ -28,7 +28,12 @@
         </div>
     </div>
     <div>
-        @include('microposts.microposts', ['microposts' => $favoritings])
+       <ul class="sortable">
+        @foreach ($favoritings as $micropost)
+                <a id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
+        @endforeach
+    </ul>
+    {!! $favoritings->render() !!}
     </div>
 <script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection
