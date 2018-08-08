@@ -30,8 +30,8 @@
            
     </div>
 	<div class="row">	
-	 @if (\Session::has('success'))
-                    <div class="alert alert-success">{!! \Session::get('success') !!}</div>
+	@if (\Session::has('success'))
+        <div class="alert alert-success">{!! \Session::get('success') !!}</div>
     @endif
 		<ul class="sortable">
     		@foreach ($microposts as $micropost)

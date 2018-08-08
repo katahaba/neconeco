@@ -41,7 +41,7 @@
                 {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
                     <!--{!! Form::label('photo', 'photo') !!}-->
                     {!! Form::file('photo') !!}
-                    <p>(写真サイズは必須で3Mb以下です。)</p>
+                    <p>(写真サイズは必須で10Mb以下です。)</p>
                     {!! Form::label('search_tag', 'search_tag') !!}
                     {!! Form::text('search_tag') !!}
                     {!! Form::submit('Submit', ['class' => 'btn btn-primary', 'id' => 'button']) !!}

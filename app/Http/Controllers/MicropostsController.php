@@ -18,7 +18,7 @@ class MicropostsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(10);
-
+        
             $data = [
                 'user' => $user,
                 'microposts' => $microposts,
@@ -52,32 +52,39 @@ class MicropostsController extends Controller
     
     public function store(Request $request)
     {
-        $request->user()->microposts()->create([
-            'image_path' => $request->photo,
-            'lat' => $request->lat,
-            'long' => $request->long,
-            'search-tag' => $request->search_tag,
+        $micropost = $request->user()->microposts()->create([
+            'image_path' => $request->file('photo'),
+            'search_tag' => $request->search_tag,
+            'map_lat' => $request->lat,
+            'map_long' => $request->long,
         ]);
         
+         $validator = Validator::make($request->all(),[
+        'photo' => 'required|image|max:100000',
+        'search_tag' => 'nullable',
+        'map_lat' => 'nullable',
+        'map_long' => 'nullable',
+        ]);
         
-        $input = $request->all();
-      
-        $fileName = $input['photo']->getClientOriginalName();
+        if ($validator->fails())
+        {
+            return back()->withErrors($validator)->withInput();
+        }
+        
+        $fileName = $request->photo->getClientOriginalName();
         $fileName = time()."@".$fileName;
+        
         //写真用外部ライブラリ、Intervention Imageを使用
-        $image = Image::make($input['photo']->getRealPath());
+        $image = Image::make($request->file('photo')->getRealPath());
         //画像リサイズ
         $image->resize(null, 300, function ($constraint) {
         $constraint->aspectRatio();
         });
+        //アップロード先とhttpリクエスト参照先とDB保存
         $image->save(storage_path() . '/app/public/images/' .  $fileName);
-        
-        $micropost = new Micropost;
-        $micropost->user_id = $request->user()->id;
-        $micropost->image_path = 'storage/images/' .  $fileName;
+        $micropost->image_path = 'storage/images/'. $fileName;
         $micropost->save();
-        
-        return redirect()->route('users.show', ['id' => \Auth::id()])->with('success','ファイルはアップロードされました。');
+        return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
     }
     
 

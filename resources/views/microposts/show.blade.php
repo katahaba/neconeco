@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if (\Session::has('success'))
+    <div class="alert alert-success">{!! \Session::get('success') !!}</div>
+@endif
+
 <img src="{{ secure_asset($micropost->image_path)}}">
 
 <div>
@@ -10,20 +15,21 @@
         {!! Form::close() !!}
     @endif
 </div>
-<div style="float:left;">
+<div>
     @include('favorites.favorite_button', ['micropost' => $micropost])
 </div>
 <div id="map" style="width: 350px; height: 350px;"></div>
 
+<script>
+var lati = <?php echo json_encode($micropost->map_lat); ?>;
+var long = <?php echo json_encode($micropost->map_long); ?>;
 
-	@if(isset($lat))
-	    lati={$lat};
-	    long={$long};
-	@else
-	     lati=35.66572;
-	     long=139.73100;
-	@endif
-     
-
-<script src="{{ secure_asset('js/show_map.js') }}"></script>
+window.onload = function(){
+  var ymap = new Y.Map("map");
+  ymap.drawMap(new Y.LatLng(lati, long), 17);
+  ymap.addControl(new Y.CenterMarkControl());
+  ymap.addControl(new Y.SliderZoomControlVertical());
+  console.log(lati, long);
+} 
+</script>
 @endsection
