@@ -35,10 +35,10 @@
     @endif
 		<ul class="sortable">
     		@foreach ($microposts as $micropost)
-    	   		<a id="{{$micropost->id}}" class="block" href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
+    	   		<a id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
     		@endforeach
     	</ul>
 	</div>
 	{!! $microposts->render() !!}
-	<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
+
 @endsection

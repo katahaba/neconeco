@@ -97,4 +97,36 @@ class MicropostsController extends Controller
         }
         return redirect('/');
     }  
+    
+    
+    public function search(Request $request)
+    { 
+        //dd($request);
+        $keywords = [];
+        $keywords = explode(",", $request->search_words);
+        // キーワードの数だけループして、LIKE句の配列を作る
+        $keywordCondition = [];
+        foreach ($keywords as $keyword) {
+            $keywordCondition[] = 'search_tag LIKE "%' . $keyword . '%"';
+        }
+        // foreach ($keywords as $keyword) {
+        //     $keywordCondition[] = 'image_path LIKE "%' . $keyword . '%"';
+        // }
+        
+        // ここで、 
+        // [ 'search_tag LIKE "%hoge%"', 
+        //   'search_tag LIKE "%piyo%"' ]
+        // という配列ができあがっている。
+        
+        // これをANDでつなげて、文字列にする
+        $keywordCondition = implode(' AND ', $keywordCondition);
+    
+        // あとはSELECT文にくっつける
+        //dd('SELECT * FROM microposts WHERE ' . $keywordCondition);
+        //$sql = DB::select('SELECT * FROM microposts WHERE ' . $keywordCondition . ' ORDER BY created_at DESC');
+        
+        $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(10);
+       
+        return view('microposts.search', ['sql' => $sql]);
+    }
 }

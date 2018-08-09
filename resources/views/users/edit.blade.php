@@ -2,17 +2,7 @@
 
 @section('content')
 
-    <h1>id: {{ $user->id }} の名前編集ページ</h1>
-
-    @if (count($errors) > 0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-
-
+    <p>id: {{ $user->id }} の名前編集ページ</p>
     {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
 
         {!! Form::label('name', '名前:') !!}
