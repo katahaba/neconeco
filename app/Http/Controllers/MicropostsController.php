@@ -66,25 +66,43 @@ class MicropostsController extends Controller
         'map_long' => 'nullable',
         ]);
         
-        if ($validator->fails())
-        {
+        if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
         
-        $fileName = $request->photo->getClientOriginalName();
+        // getClientOriginalName()：ファイルのオリジナル名からサムネ用の一意の名前を生成
+        $fileName = $validator['photo']->getClientOriginalName();
         $fileName = time()."@".$fileName;
         
-        //写真用外部ライブラリ、Intervention Imageを使用
-        $image = Image::make($request->file('photo')->getRealPath());
-        //画像リサイズ
-        $image->resize(null, 300, function ($constraint) {
-        $constraint->aspectRatio();
-        });
-        //アップロード先とhttpリクエスト参照先とDB保存
-        $image->save(storage_path() . '/app/public/images/' .  $fileName);
-        $micropost->image_path = 'storage/images/'. $fileName;
+        // getRealPath()：webサーバーに一時的にアップロードしたファイルのパスを取得します。
+        //写真用外部ライブラリ、Intervention Imageを使用、サムネ用に新たなファイルを作る
+        // $image = Image::make($request->file('photo')->getRealPath());
+        // //画像リサイズ
+        // $image->resize(null, 300, function ($constraint) {
+        // $constraint->aspectRatio();
+        // });
+        // $image->save(storage_path() . '/app/public/images/' .  $fileName);
+        
+        $path = $request->file('photo')->storeAs('images',$fileName,'s3');
+        
+        $micropost->image_path = $path;
         $micropost->save();
         return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
+
+        
+        
+        
+        /* ファイルパスから参照するURLを生成する */
+        // $url = Storage::disk('s3')->url($path);
+        // $micropost->image_path = $url;
+        
+        
+        // アップロード先
+        // $image->save(storage_path() . '/app/public/images/' .  $fileName);
+        // 画像をサーバーに保存する
+        // $micropost->image_path = 'storage/images/'. $fileName;
+        // 
+        // return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
     }
     
 
@@ -109,9 +127,6 @@ class MicropostsController extends Controller
         foreach ($keywords as $keyword) {
             $keywordCondition[] = 'search_tag LIKE "%' . $keyword . '%"';
         }
-        // foreach ($keywords as $keyword) {
-        //     $keywordCondition[] = 'image_path LIKE "%' . $keyword . '%"';
-        // }
         
         // ここで、 
         // [ 'search_tag LIKE "%hoge%"', 

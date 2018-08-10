@@ -16,7 +16,7 @@ class CreateMicropostsTable extends Migration
         Schema::create('microposts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('image_path')->nullable()->default(null);
+            $table->string('image_path');
             $table->string('search_tag')->nullable()->default(null);
             $table->double('map_lat')->nullable()->default(null);
             $table->double('map_long')->nullable()->default(null);
