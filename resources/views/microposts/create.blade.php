@@ -41,7 +41,7 @@
                 {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
                     {!! Form::label('photo', 'photo_file') !!}
                     {!! Form::file('photo') !!}
-                    <h6>(写真は必須で10Mb以下です。)</h6>
+                    <h6>(写真は必須で3Mb以下です。)</h6>
                     
                     {!! Form::label('search_tag', 'search_tag') !!}
                     {!! Form::text('search_tag') !!}
@@ -57,4 +57,5 @@
     </div>
     @endif
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
+
 @endsection

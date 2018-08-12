@@ -61,6 +61,14 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
+            
+            'options' => [
+                'cache' => [
+                'store' => 'memcached',
+                'expire' => 1200,
+                'prefix' => 'cache-prefix',
+                ],
+            ],
         ],
     ],
 

@@ -16,14 +16,8 @@ class MicropostsController extends Controller
     {
         $data = [];
         if (\Auth::check()) {
-            $user = \Auth::user();
             $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(10);
-            $data = [
-                'user' => $user,
-                'microposts' => $microposts,
-            ];
-            $data += $this->counts($user);
-            return view('microposts.index', $data);
+            return view('microposts.index', ['microposts' => $microposts]);
         }else {
             return view('welcome');
         }
@@ -60,10 +54,10 @@ class MicropostsController extends Controller
         ]);
         
          $validator = Validator::make($request->all(),[
-        'photo' => 'required|image|max:100000',
+        'photo' => 'file|required|image|max:3000',
         'search_tag' => 'nullable',
-        'map_lat' => 'nullable',
-        'map_long' => 'nullable',
+        'lat' => 'nullable',
+        'long' => 'nullable',
         ]);
         
         if ($validator->fails()){

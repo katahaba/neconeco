@@ -8,7 +8,7 @@
         {!! Form::text('name') !!}
         {!! Form::submit('更新') !!}
     {!! Form::close() !!}
-
+    <p>id: {{ $user->id }} の登録削除</p>
     {!! Form::model($user, ['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
         {!! Form::submit('削除') !!}
     {!! Form::close() !!}

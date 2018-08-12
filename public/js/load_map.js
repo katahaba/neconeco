@@ -15,8 +15,9 @@ window.onload = function(){
   });
   
   $('form').submit(function(){
-    // console.log(lati,long);
     $('[name="lat"]').val(lati);
     $('[name="long"]').val(long);
   })
 }
+
+
