@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-	<ul>
-		@foreach ($sql as $micropost)
-	   		<a id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
-		@endforeach
-	</ul>
-</div>
-
+<ul>
+	@foreach ($sql as $micropost)
+   		<a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
+   		<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
+	@endforeach
+</ul>
 {!! $sql->render() !!}
+<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

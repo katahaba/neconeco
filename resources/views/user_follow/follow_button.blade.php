@@ -1,4 +1,3 @@
-<!--Auth::user() はログイン中のユーザを取得できます。これらはナビバーの中でも利用されています。 -->
 
 @if (Auth::id() != $user->id)
     @if (Auth::user()->is_following($user->id))

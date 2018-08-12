@@ -18,7 +18,6 @@ class MicropostsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(10);
-        
             $data = [
                 'user' => $user,
                 'microposts' => $microposts,
@@ -33,6 +32,7 @@ class MicropostsController extends Controller
 
     public function show($id)
     {
+         
         $micropost = Micropost::find($id);
         return view('microposts.show', ['micropost' => $micropost]);
     }
@@ -70,39 +70,14 @@ class MicropostsController extends Controller
             return back()->withErrors($validator)->withInput();
         }
         
-        // getClientOriginalName()：ファイルのオリジナル名からサムネ用の一意の名前を生成
-        $fileName = $validator['photo']->getClientOriginalName();
-        $fileName = time()."@".$fileName;
+        $path = Storage::disk('s3')->putFile('images', $request->file('photo'), 'public'); // Ｓ３/images/にアップ
         
-        // getRealPath()：webサーバーに一時的にアップロードしたファイルのパスを取得します。
-        //写真用外部ライブラリ、Intervention Imageを使用、サムネ用に新たなファイルを作る
-        // $image = Image::make($request->file('photo')->getRealPath());
-        // //画像リサイズ
-        // $image->resize(null, 300, function ($constraint) {
-        // $constraint->aspectRatio();
-        // });
-        // $image->save(storage_path() . '/app/public/images/' .  $fileName);
+        $url = Storage::disk('s3')->url($path);
         
-        $path = $request->file('photo')->storeAs('images',$fileName,'s3');
-        
-        $micropost->image_path = $path;
+        $micropost->image_path = $url;
         $micropost->save();
         return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
 
-        
-        
-        
-        /* ファイルパスから参照するURLを生成する */
-        // $url = Storage::disk('s3')->url($path);
-        // $micropost->image_path = $url;
-        
-        
-        // アップロード先
-        // $image->save(storage_path() . '/app/public/images/' .  $fileName);
-        // 画像をサーバーに保存する
-        // $micropost->image_path = 'storage/images/'. $fileName;
-        // 
-        // return redirect()->route('microposts.show', ['id' => \Auth::id(), 'micropost' =>$micropost ])->with('success','ファイルはアップロードされました。');
     }
     
 
@@ -133,13 +108,8 @@ class MicropostsController extends Controller
         //   'search_tag LIKE "%piyo%"' ]
         // という配列ができあがっている。
         
-        // これをANDでつなげて、文字列にする
-        $keywordCondition = implode(' AND ', $keywordCondition);
-    
-        // あとはSELECT文にくっつける
-        //dd('SELECT * FROM microposts WHERE ' . $keywordCondition);
-        //$sql = DB::select('SELECT * FROM microposts WHERE ' . $keywordCondition . ' ORDER BY created_at DESC');
-        
+        // これをORでつなげて、文字列にする
+        $keywordCondition = implode(' OR ', $keywordCondition);
         $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(10);
        
         return view('microposts.search', ['sql' => $sql]);

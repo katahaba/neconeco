@@ -5,8 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Microposts</title>
+        <title>NecoNeco</title>
         
+        <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main.css') }}" media="all">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -17,12 +18,14 @@
 
     </head>
     <body>
+        
         @include('commons.navbar')
-
-        <div class="container">
+        
+        <div class="container-fluid">
             @include('commons.error_messages')
 
             @yield('content')
-        </div>      
+        </div>
+        
     </body>
 </html>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User; // 追加
+use App\User; 
 
 class UsersController extends Controller
 {
@@ -22,29 +22,27 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
-
         $data = ['user' => $user,'microposts' => $microposts];
-
         $data += $this->counts($user);
 
         return view('users.show', $data);
     }
    
-//ユーザー情報　編集    
+    //ユーザー情報　編集    
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.edit', ['user' => $user,]);
+        return view('users.edit', ['user' => $user]);
     }
     
-    public function update(Request $request,$id)
-    {
-        $user = User::find($id);
-        $user->name=$request->name;
-        $user->email=$request->email;
+    public function update(Request $request)
+    {   
+        $user = \Auth::User();
+        $user->name = $request->name;
+        // $user->email= $request->email;
         $user->save();
-        return view('users.show', [
-            'user' => $user,
+        return view('users.edit', [
+            'user' => $user
         ]);
     }
     

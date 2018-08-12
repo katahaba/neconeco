@@ -6,7 +6,7 @@
     <div class="alert alert-success">{!! \Session::get('success') !!}</div>
 @endif
 
-<img src="{{ secure_asset($micropost->image_path)}}">
+<img class="cat_image"  src="{{ secure_asset($micropost->image_path)}}">
 
 <div>
     @if (Auth::id() === $micropost->user_id)

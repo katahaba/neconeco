@@ -1,0 +1,13 @@
+a.float {float:left}
+
+ul {padding-left:0px;}
+
+@media all and (max-width:667px) { 
+    img.cat_image {width:100%; height:auto; margin: 0 }
+}
+@media all and (min-width:768px) and ( max-width:1024px) {
+    img.cat_image {width:auto; height:350px; margin: 0 }
+}
+@media all and (min-width:1024px) {
+    img.cat_image {width:auto; height:350px; margin: 0 }
+}

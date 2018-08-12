@@ -19,7 +19,7 @@
         <div class="col-xs-8">
             <ul class="nav nav-tabs nav-justified">
                 @if (Auth::id() == $user->id)
-                    <li role="presentation" class="{{ Request::is('microposts/create') ? 'active' : '' }}"><a href="{{ route('microposts.create') }}">New Post <span class="badge"></span></a></li>
+                <li role="presentation" class="{{ Request::is('microposts/create') ? 'active' : '' }}"><a href="{{ route('microposts.create') }}">New Post <span class="badge"></span></a></li>
                 @endif
                 <li role="presentation" class="{{ Request::is('users/' . $user->id) ? 'active' : '' }}"><a href="{{ route('users.show', ['id' => $user->id]) }}">Photos <span class="badge">{{ $count_microposts }}</span></a></li>
                 <li role="presentation" class="{{ Request::is('users/*/followings') ? 'active' : '' }}"><a href="{{ route('users.followings', ['id' => $user->id]) }}">Followings <span class="badge">{{ $count_followings }}</span></a></li>
@@ -35,10 +35,11 @@
     @endif
 		<ul class="sortable">
     		@foreach ($microposts as $micropost)
-    	   		<a id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}"><img src="{{ secure_asset($micropost->image_path)}}"></a>
+    	   		<a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
+	   			<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
     		@endforeach
     	</ul>
 	</div>
 	{!! $microposts->render() !!}
-
+<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

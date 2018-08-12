@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -11,7 +11,7 @@
                 <a class="navbar-brand" href="/">All Photos</a>
                 <form action="/microposts/search" method="GET">
                   　<div class="input-group">
-                        <input type="text" class="form-control" name="search_words" placeholder="検索ワード入力。 AND検索の場合は「 , 」で繋げてください。">
+                        <input type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。 OR検索の場合は「 , 」で繋げてください。">
                         <span class="input-group-btn">
                         	<button type="submit" class="btn btn-default">写真検索</button>
                         </span>
