@@ -62,13 +62,13 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             
-            'options' => [
-                'cache' => [
-                'store' => 'memcached',
-                'expire' => 1200,
-                'prefix' => 'cache-prefix',
-                ],
-            ],
+            // 'options' => [
+            //     'cache' => [
+            //     'store' => 'memcached',
+            //     'expire' => 1200,
+            //     'prefix' => 'cache-prefix',
+            //     ],
+            // ],
         ],
     ],
 

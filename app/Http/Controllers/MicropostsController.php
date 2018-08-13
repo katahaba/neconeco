@@ -52,9 +52,9 @@ class MicropostsController extends Controller
             'map_lat' => $request->lat,
             'map_long' => $request->long,
         ]);
-        
+        dd($request->all());
          $validator = Validator::make($request->all(),[
-        'photo' => 'file|required|image|max:3000',
+        'photo' => 'required|image|max:5000',
         'search_tag' => 'nullable',
         'lat' => 'nullable',
         'long' => 'nullable',

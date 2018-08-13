@@ -34,14 +34,14 @@
             <h4 class="panel-title">Upload</h4>
             <div class="panel-body">
                 <h5>photographing_place</h5>
-                <h6>(中心位置を撮影場所として保存:任意)</h6>
+                <h6>(中心位置を撮影場所として保存: 任意)</h6>
                 <div id="map" style="width: 350px; height: 350px;"></div>
             </div>
             <div class="panel-body">
                 {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
                     {!! Form::label('photo', 'photo_file') !!}
                     {!! Form::file('photo') !!}
-                    <h6>(写真は必須で3Mb以下です。)</h6>
+                    <h6>(写真は必須で5Mb以下です。)</h6>
                     
                     {!! Form::label('search_tag', 'search_tag') !!}
                     {!! Form::text('search_tag') !!}
@@ -56,6 +56,15 @@
         </div>   
     </div>
     @endif
+<script>
+    document.getElementById('photo').onchange = function() {
+    var fileSize = document.getElementById('photo').files[0].size;
+    console.log(fileSize);
+    if (fileSize > 8300000) {
+      alert("ファイルが大き過ぎます。");
+      document.getElementById("photo").value = null; 
+    }}
+</script>
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
 
 @endsection

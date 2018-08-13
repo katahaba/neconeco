@@ -13,7 +13,7 @@ window.onload = function(){
     long = pos.lng();
     console.log(lati,long);
   });
-  
+ 
   $('form').submit(function(){
     $('[name="lat"]').val(lati);
     $('[name="long"]').val(long);
