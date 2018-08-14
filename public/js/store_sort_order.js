@@ -8,15 +8,18 @@ $(function() {
             var updateArray =  $(".sortable").sortable("toArray").join(",");
             //変換された文字列をcookieに３０日保持で格納
             $.cookie("sortable", updateArray, {expires: 30});
+            console.log("updateArray",updateArray);
         }       
     });
     //すでにsortableというcookieがあるかをチェック
     if($.cookie("sortable")) {
         //cookieのsortableをいうデータの値を取得し、カンマ区切り文字列から配列に変換後、配列を逆転する
         var cookieValue = $.cookie("sortable").split(",").reverse();
+        console.log("cookieValue", cookieValue);
         //上記で取得した配列をループし、要素を追加
         $.each(cookieValue,function(index, value) {
             $('#'+value).prependTo(".sortable");
         });
+        console.log("追加後cookieValue", cookieValue);
     }
 });

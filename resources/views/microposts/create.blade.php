@@ -38,20 +38,24 @@
                 <div id="map" style="width: 350px; height: 350px;"></div>
             </div>
             <div class="panel-body">
-                {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                    {!! Form::label('photo', 'photo_file') !!}
-                    {!! Form::file('photo') !!}
-                    <h6>(写真は必須で5Mb以下です。)</h6>
-                    
-                    {!! Form::label('search_tag', 'search_tag') !!}
-                    {!! Form::text('search_tag') !!}
-                    <h6>(猫の種類などを入れてください。)</h6>
-                    
-                    {!! Form::submit('Submit', ['class' => 'btn btn-primary', 'id' => 'button']) !!}
-                    {!! Form::hidden('lat') !!}
-                    {!! Form::hidden('long') !!}
-
-                {!! Form::close() !!}
+                <div class="col-xs-12 col-md-3">
+                    {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
+                            <label class="photo" for="photo">
+                               写真を選択  
+                               <input id="photo" type="file" name="photo" style="display:none;">
+                            </label>
+                            <h6>(写真は必須で5Mb以下です)</h6>
+                        <br>    
+                        <div class="form-group">
+                            {!! Form::label('search_tag', '検索用タグを入力') !!}
+                            {!! Form::text('search_tag', null,['class' => 'form-control']) !!}
+                            
+                        </div>
+                        {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
+                        {!! Form::hidden('lat') !!}
+                        {!! Form::hidden('long') !!}
+                    {!! Form::close() !!}
+                </div>    
             </div>
         </div>   
     </div>
@@ -66,5 +70,4 @@
     }}
 </script>
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
-
 @endsection

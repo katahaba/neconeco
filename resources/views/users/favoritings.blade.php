@@ -27,6 +27,7 @@
             </ul>
         </div>
     </div>
+
     <div>
        <ul class="sortable">
         @foreach ($favoritings as $micropost)
