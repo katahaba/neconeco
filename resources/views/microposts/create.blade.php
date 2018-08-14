@@ -39,11 +39,10 @@
             <div class="panel-body">
                 <div class="col-xs-12 col-md-3 form-data">
                     {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                            <label class="photo" for="photo">
-                               写真を選択  
-                               <input id="photo" type="file" name="photo" style="display:none;">
-                            </label>
-                            <h6>(写真は必須で5Mb以下です)</h6>
+                        
+                            {!! Form::label('photo', 'photo_file (写真は必須で5Mb以下です)') !!}
+                            {!! Form::file('photo',null,['class' => 'form-control']) !!}
+                        
                         <br>    
                         <div class="form-group">
                             {!! Form::label('search_tag', '検索用タグを入力') !!}

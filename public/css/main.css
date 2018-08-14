@@ -6,13 +6,30 @@ div.panel-body {padding-left:0px;}
 
 div.form-data {padding-left:0px;}
 
-label.photo {
-     color: white;
-     background-color: #666666;
+
+#photo {color: black;
+     border: solid 1px #CCCCCC;
      padding: 6px;
-     border-radius: 3px;
+     border-radius: 4px;
      cursor: pointer;
-    }
+     }
+
+
+/*div.photo-data {*/
+/*     color: white;*/
+/*     background-color: #666666;*/
+/*     padding: 6px;*/
+/*     border-radius: 3px;*/
+/*     cursor: pointer;*/
+/*    }*/
+    
+/*label.photo {*/
+/*     color: white;*/
+/*     background-color: #666666;*/
+/*     padding: 6px;*/
+/*     border-radius: 3px;*/
+/*     cursor: pointer;*/
+/*    }*/
                     
 
 @media all and (max-width:667px) { 
