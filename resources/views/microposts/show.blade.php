@@ -7,7 +7,7 @@
 @endif
 
 <img class="cat_image"  src="{{ secure_asset($micropost->image_path)}}">
-
+<p>検索タグ:{{ $micropost->search_tag }}</p>
 <div>
     @if (Auth::id() === $micropost->user_id)
         {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
@@ -15,9 +15,11 @@
         {!! Form::close() !!}
     @endif
 </div>
+
 <div>
     @include('favorites.favorite_button', ['micropost' => $micropost])
 </div>
+<br>
 <div id="map" style="width: 350px; height: 350px;"></div>
 
 <script>
