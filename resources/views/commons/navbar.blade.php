@@ -10,8 +10,8 @@
                 </button>
                 <a class="navbar-brand" href="/">All Photos</a>
                 <form action="/microposts/search" method="GET">
-                  　<div class="input-group">
-                        <input type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。 　OR検索の場合は「 , 」で繋げてください。">
+                  　<div id="search_field" class="input-group">
+                        <input  type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。 　OR検索の場合は「 , 」で繋げてください。">
                         <span class="input-group-btn">
                         	<button type="submit" class="btn btn-default">写真検索</button>
                         </span>

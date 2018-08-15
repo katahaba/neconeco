@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::paginate(5);
         
         return view('users.index', [
             'users' => $users,
@@ -21,7 +21,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
+        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(5);
         $data = ['user' => $user,'microposts' => $microposts];
         $data += $this->counts($user);
 
@@ -63,7 +63,7 @@ class UsersController extends Controller
     public function followings($id)
     {
         $user = User::find($id);
-        $followings = $user->followings()->paginate(10);
+        $followings = $user->followings()->paginate(5);
 
         $data = [
             'user' => $user,
@@ -80,7 +80,7 @@ class UsersController extends Controller
     public function followers($id)
     {
         $user = User::find($id);
-        $followers = $user->followers()->paginate(10);
+        $followers = $user->followers()->paginate(5);
         
         $data = [
             'user' => $user,
@@ -96,7 +96,7 @@ class UsersController extends Controller
     public function favoritings($id)
     {
         $user = User::find($id);
-        $favoritings = $user->favoritings()->paginate(10);
+        $favoritings = $user->favoritings()->paginate(5);
         
         $data = [
             'user' => $user,

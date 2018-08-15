@@ -2,10 +2,16 @@ a.float {float:left}
 
 ul {padding-left:0px;}
 
-div.panel-body {padding-left:0px;}
+div.panel-body {padding-left:5px;}
 
 div.form-data {padding-left:0px;}
 
+div.show {padding:0px 15px;}
+
+ul.pagination{padding:0px;margin:0px;}
+
+
+/*#search_field {padding-top:0px}*/
 
 #photo {color: black;
      border: solid 1px #CCCCCC;
@@ -13,23 +19,6 @@ div.form-data {padding-left:0px;}
      border-radius: 4px;
      cursor: pointer;
      }
-
-
-/*div.photo-data {*/
-/*     color: white;*/
-/*     background-color: #666666;*/
-/*     padding: 6px;*/
-/*     border-radius: 3px;*/
-/*     cursor: pointer;*/
-/*    }*/
-    
-/*label.photo {*/
-/*     color: white;*/
-/*     background-color: #666666;*/
-/*     padding: 6px;*/
-/*     border-radius: 3px;*/
-/*     cursor: pointer;*/
-/*    }*/
                     
 
 @media all and (max-width:667px) { 

@@ -29,17 +29,17 @@
         </div>    
            
     </div>
-	<div class="row">	
-	@if (\Session::has('success'))
-        <div class="alert alert-success">{!! \Session::get('success') !!}</div>
-    @endif
-		<ul class="sortable">
+	<div class="row show">	
+    	{!! $microposts->render() !!}
+    	@if (\Session::has('success'))
+            <div class="alert alert-success">{!! \Session::get('success') !!}</div>
+        @endif
+        <ul class="sortable">
     		@foreach ($microposts as $micropost)
     	   		<a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
-	   			<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
+       			<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
     		@endforeach
     	</ul>
 	</div>
-	{!! $microposts->render() !!}
 <script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

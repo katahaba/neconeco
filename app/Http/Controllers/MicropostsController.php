@@ -16,7 +16,7 @@ class MicropostsController extends Controller
     {
         $data = [];
         if (\Auth::check()) {
-            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(10);
+            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(5);
             return view('microposts.index', ['microposts' => $microposts]);
         }else {
             return view('welcome');
@@ -46,13 +46,7 @@ class MicropostsController extends Controller
     
     public function store(Request $request)
     {
-        $micropost = $request->user()->microposts()->create([
-            'image_path' => $request->file('photo'),
-            'search_tag' => $request->search_tag,
-            'map_lat' => $request->lat,
-            'map_long' => $request->long,
-        ]);
-         $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
         'photo' => 'required|image|max:5000',
         'search_tag' => 'nullable',
         'lat' => 'nullable',
@@ -62,6 +56,14 @@ class MicropostsController extends Controller
         if ($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
+        
+        $micropost = $request->user()->microposts()->create([
+            'image_path' => $request->file('photo'),
+            'search_tag' => $request->search_tag,
+            'map_lat' => $request->lat,
+            'map_long' => $request->long,
+        ]);
+        
         
         $path = Storage::disk('s3')->putFile('images', $request->file('photo'), 'public'); // Ｓ３/images/にアップ
         
@@ -103,7 +105,7 @@ class MicropostsController extends Controller
         
         // これをORでつなげて、文字列にする
         $keywordCondition = implode(' OR ', $keywordCondition);
-        $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(10);
+        $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(5);
        
         return view('microposts.search', ['sql' => $sql]);
     }
