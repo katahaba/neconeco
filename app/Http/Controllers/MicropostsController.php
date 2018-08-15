@@ -95,10 +95,10 @@ class MicropostsController extends Controller
         foreach ($keywords as $keyword) {
             $keywordCondition[] = 'search_tag LIKE \'%' . $keyword . '%\'';
         }
-        
+        //"search_tag LIKE '%%'"
         // ここで、 
-        // [ 'search_tag LIKE "%hoge%"', 
-        //   'search_tag LIKE "%piyo%"' ]
+        // [ "search_tag LIKE '%hoge%'", 
+        //   "search_tag LIKE '%piyo%'"]
         // という配列ができあがっている。
         
         // これをORでつなげて、文字列にする
