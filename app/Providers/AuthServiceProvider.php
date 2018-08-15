@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\URL;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,9 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
-        if ($this->app->environment() == 'production') {
-           URL::forceScheme('https');
-       }
+        $this->registerPolicies();
+        
     }
 }
