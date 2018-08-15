@@ -93,7 +93,7 @@ class MicropostsController extends Controller
         // キーワードの数だけループして、LIKE句の配列を作る
         $keywordCondition = [];
         foreach ($keywords as $keyword) {
-            $keywordCondition[] = 'search_tag LIKE "%' . $keyword . '%"';
+            $keywordCondition[] = 'search_tag LIKE \'%' . $keyword . '%\'';
         }
         
         // ここで、 
