@@ -19,7 +19,11 @@ ul.pagination{padding:0px;margin:0px;}
      border-radius: 4px;
      cursor: pointer;
      }
-                    
+html, body{
+/*overflow: hidden;*/
+touch-action: none;
+
+}
 
 @media all and (max-width:667px) { 
     img.cat_image {width:100%; height:auto;}
