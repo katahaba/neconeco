@@ -28,7 +28,7 @@
             </ul>
         </div>
     </div>
-    <div class="row">
+    <div class="row show">
           @include('users.users', ['users' => $users])
     </div>
 @endsection
