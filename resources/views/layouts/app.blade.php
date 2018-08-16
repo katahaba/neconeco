@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-        <script src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-"></script>
+        <script src="https://map.yahooapis.jp/js/V1/jsapi?appid={{ getenv('YAHOO_API_KEY') }}"></script>
         
     </head>
     <body>
