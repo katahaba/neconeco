@@ -23,8 +23,8 @@
 <div id="map" style="width: 350px; height: 350px;"></div>
 
 <script>
-var lati = <?php echo json_encode($micropost->map_lat);?>;
-var long = <?php echo json_encode($micropost->map_long);?>;
+var lati = <?php echo json_encode($micropost->map_lat); ?>;
+var long = <?php echo json_encode($micropost->map_long); ?>;
 
 window.onload = function(){
   var ymap = new Y.Map("map");

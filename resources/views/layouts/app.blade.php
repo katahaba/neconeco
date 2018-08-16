@@ -15,10 +15,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
         @if(App::environment('production', 'staging'))
-        <script src="https://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPWEzR1ZLT280RVdZUSZzPWNvbnN1bWVyc2VjcmV0Jng9OWU-
-"></script>
-        @else<script src="https://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-
-"></script>
+            <script type="text/javascript" charset="utf-8" src="https://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPWEzR1ZLT280RVdZUSZzPWNvbnN1bWVyc2VjcmV0Jng9OWU-
+            "></script>
+        @else
+            <script type="text/javascript" charset="utf-8" src="https://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPUo0ZXpHYWpHOFJTYSZzPWNvbnN1bWVyc2VjcmV0Jng9ZDM-
+            "></script>
         @endif
 
     </head>
