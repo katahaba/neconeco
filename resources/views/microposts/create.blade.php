@@ -67,5 +67,5 @@
       document.getElementById("photo").value = null; 
     }}
 </script>
-<script src="{{ asset('js/load_map.js') }}"></script>
+<script src="{{ secure_asset('js/load_map.js') }}"></script>
 @endsection
