@@ -12,6 +12,8 @@
 */
 //トップ
 Route::get('/', 'MicropostsController@index');
+Route::get('microposts/search', 'MicropostsController@search');
+Route::get('microposts/maps', 'MicropostsController@maps')->name('microposts.maps');
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -35,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('favoritings', 'UsersController@favoritings')->name('users.favoritings');
         
     });
-    Route::get('microposts/search', 'MicropostsController@search');
+    
     Route::resource('microposts', 'MicropostsController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
     
 });

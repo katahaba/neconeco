@@ -14,7 +14,7 @@ class MicropostsController extends Controller
 {
     public function index()
     {
-        $data = [];
+        
         if (\Auth::check()) {
             $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(8);
             return view('microposts.index', ['microposts' => $microposts]);
@@ -26,9 +26,10 @@ class MicropostsController extends Controller
 
     public function show($id)
     {
-         
+        $user = \Auth::user();
         $micropost = Micropost::find($id);
-        return view('microposts.show', ['micropost' => $micropost]);
+        $data = ['user' => $user, 'micropost' => $micropost];
+        return view('microposts.show',$data);
     }
     
     public function create()
@@ -49,8 +50,8 @@ class MicropostsController extends Controller
         $validator = Validator::make($request->all(),[
         'photo' => 'required|image|max:5000',
         'search_tag' => 'nullable',
-        'lat' => 'nullable',
-        'long' => 'nullable',
+        'lat' => 'required',
+        'long' => 'required',
         ]);
         
         if ($validator->fails()){
@@ -79,7 +80,6 @@ class MicropostsController extends Controller
     public function destroy($id)
     { 
         $micropost = Micropost::find($id);
-
         if (\Auth::id() === $micropost->user_id) {
             $micropost->delete();
         }
@@ -108,5 +108,35 @@ class MicropostsController extends Controller
         $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(5);
        
         return view('microposts.search', ['sql' => $sql]);
+    }
+    
+    public function maps()
+    {
+        $datas='';
+        $microposts = DB::table('microposts')->get();
+        foreach ($microposts as $micropost){
+        $datas = $datas . "&pin$micropost->id=$micropost->map_lat,$micropost->map_long" ;
+        }
+        return view('microposts.all_maps', ['microposts' => $microposts, 'datas' => $datas]);
+    }
+    
+     //ユーザー情報　編集    
+    public function edit($id)
+    {
+        $micropost = Micropost::find($id);
+        return view('microposts.edit', ['micropost' => $micropost]);
+        
+    }
+    
+    public function update(Request $request, $id)
+    {   
+        $micropost = Micropost::find($id);
+        $micropost->search_tag=$request->search_tag;
+        $micropost->map_lat = $request->lat;
+        $micropost->map_long = $request->long;
+        
+        $micropost->save();
+        
+        return view('microposts.show', ['micropost' =>$micropost ])->with('updated','データは更新されました。');
     }
 }

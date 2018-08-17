@@ -41,9 +41,7 @@ class UsersController extends Controller
         $user->name = $request->name;
         // $user->email= $request->email;
         $user->save();
-        return view('users.edit', [
-            'user' => $user
-        ]);
+        return back()->with(['user' => $user, 'user_updated'=> 'ユーザーデータは更新されました。']);
     }
     
     public function destroy($id)
