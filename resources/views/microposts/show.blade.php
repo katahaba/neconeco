@@ -22,7 +22,7 @@
 <br>
 <!--<div id="map" style="width: 350px; height: 350px;"></div>-->
 <!--<img id="map" style="width: 350px; height: 350px;" src="https://map.yahooapis.jp/map/V1/static?appid={{ getenv('YAHOO_API_KEY') }}&lat={{$micropost->map_lat}}&lon={{$micropost->map_long}}&z=17&pointer=on">-->
-<img id="map" style="width: 350px; height: 350px;" src="https://map.yahooapis.jp/map/V1/static?appid={{ getenv('YAHOO_API_KEY') }}&pin1={{$micropost->map_lat}},{{$micropost->map_long}}&z=18">
+<img id="map" style="width: 350px; height: 350px;" src="https://map.yahooapis.jp/map/V1/static?appid={{ getenv('YAHOO_API_KEY') }}&pin{{$micropost->id}}={{$micropost->map_lat}},{{$micropost->map_long}},,red&z=18">
 
 <!--<script>-->
 <!--var lati = <?php echo json_encode($micropost->map_lat); ?>;-->
