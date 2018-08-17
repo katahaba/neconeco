@@ -7,7 +7,8 @@
 @endif
 
 <img class="cat_image"  src="{{ secure_asset($micropost->image_path)}}">
-<p>検索タグ:{{ $micropost->search_tag }}</p>
+<p class="p">検索タグ: {{ $micropost->search_tag }}</p>
+<p class="p">POST_ID: {{$micropost->id}}</p>
 <div>
     @if (Auth::id() === $micropost->user_id)
         {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}

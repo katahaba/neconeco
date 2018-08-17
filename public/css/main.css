@@ -22,8 +22,9 @@ ul.pagination{padding:0px;margin:0px;}
 html, body{
 /*overflow: hidden;*/
 touch-action: none;
-
 }
+
+p.p {margin-bottom :2px;}
 
 @media all and (max-width:667px) { 
     img.cat_image {width:100%; height:auto;}
