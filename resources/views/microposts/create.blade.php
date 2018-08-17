@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <aside class="col-xs-4">
+        <aside class="col-xs-4 col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ $user->name }}</h3>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </aside>
-        <div class="col-xs-8">
+        <div class="col-xs-8 col-md-10">
             <ul class="nav nav-tabs nav-justified">
                 @if (Auth::id() == $user->id)
                     <li role="presentation" class="{{ Request::is('microposts/create') ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('microposts.create') }}">New Post <span class="badge"></span></a></li>
@@ -32,23 +32,22 @@
     <div class="row">
         <div class="panel-heading">
             <h4 class="panel-title">Upload</h4>
-            <div class="panel-body"> 
-                <h5>中心位置を撮影場所として保存: 任意</h5>
-                <div id="map" style="width: 350px; height: 350px;"></div>
-            </div>
             <div class="panel-body">
                 <div class="col-xs-12 col-md-3 form-data">
-                    {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}
-                        
-                            {!! Form::label('photo', 'photo_file (写真は必須で5Mb以下です)') !!}
-                            {!! Form::file('photo',null,['class' => 'form-control']) !!}
-                        
-                        <br>    
+                    <br>
+                    {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}   
+                        {!! Form::label('photo', 'photo_file (写真は必須で5Mb以下です)') !!}
+                        {!! Form::file('photo',null,['class' => 'form-control']) !!}    
+                        <br> 
                         <div class="form-group">
                             {!! Form::label('search_tag', '検索用タグを入力') !!}
-                            {!! Form::text('search_tag', null,['class' => 'form-control']) !!}
-                            
+                            {!! Form::text('search_tag', null,['class' => 'form-control']) !!}    
                         </div>
+                        <br>
+                        <h5>中心位置を撮影場所として保存: 任意</h5>
+                        <div id="map" style="width: 350px; height: 350px;"></div>
+                        <br>
+                        
                         {!! Form::submit('Upload', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
                         {!! Form::hidden('lat') !!}
                         {!! Form::hidden('long') !!}

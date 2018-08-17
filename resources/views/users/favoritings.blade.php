@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <aside class="col-xs-4">
+        <aside class="col-xs-4 col-md-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ $user->name }}</h3>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </aside>
-        <div class="col-xs-8">
+        <div class="col-xs-8 col-md-10">
             <ul class="nav nav-tabs nav-justified">
                 @if (Auth::id() == $user->id)
                     <li role="presentation" class="{{ Request::is('microposts/create') ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('microposts.create') }}">New Post <span class="badge"></span></a></li>
