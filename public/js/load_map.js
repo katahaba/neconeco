@@ -1,4 +1,4 @@
-window.onload = function(){
+$(function(){
   var ymap = new Y.Map("map");
   var lati=35.66572;
   var long=139.73100;
@@ -18,6 +18,6 @@ window.onload = function(){
     $('[name="lat"]').val(lati);
     $('[name="long"]').val(long);
   })
-}
+});
 
 

@@ -3,7 +3,7 @@ $(function() {
     $(".sortable").sortable({
         //指定要素が入れ替わった時に発火
         update: function(ev, ui) {
-            console.log(ev,ui);
+            console.log("ev:",ev,"ui:",ui);
             //指定要素の順番を配列化し、カンマ区切りの文字列に変換
             var updateArray =  $(".sortable").sortable("toArray").join(",");
             //変換された文字列をcookieに３０日保持で格納
