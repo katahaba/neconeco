@@ -1,3 +1,12 @@
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
 $(function(){
   var ymap = new Y.Map("map");
   var lati=35.66572;

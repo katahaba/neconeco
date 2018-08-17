@@ -23,6 +23,7 @@
                     {!! Form::hidden('long') !!}
                 {!! Form::close() !!}
             @endif
-    </div>    
+    </div> 
+
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
 @endsection

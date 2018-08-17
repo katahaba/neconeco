@@ -58,13 +58,13 @@
     </div>
     @endif
 <script>
-    document.getElementById('photo').onchange = function() {
-    var fileSize = document.getElementById('photo').files[0].size;
-    console.log(fileSize);
-    if (fileSize > 8300000) {
-      alert("ファイルが大き過ぎます。");
-      document.getElementById("photo").value = null; 
-    }}
+document.getElementById('photo').onchange = function() {
+var fileSize = document.getElementById('photo').files[0].size;
+console.log(fileSize);
+if (fileSize > 8300000) {
+  alert("ファイルが大き過ぎます。");
+  document.getElementById("photo").value = null; 
+}}
 </script>
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
 @endsection
