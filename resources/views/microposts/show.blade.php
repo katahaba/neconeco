@@ -20,18 +20,20 @@
     @include('favorites.favorite_button', ['micropost' => $micropost])
 </div>
 <br>
-<div id="map" style="width: 350px; height: 350px;"></div>
+<!--<div id="map" style="width: 350px; height: 350px;"></div>-->
+<!--<img id="map" style="width: 350px; height: 350px;" src="https://map.yahooapis.jp/map/V1/static?appid={{ getenv('YAHOO_API_KEY') }}&lat={{$micropost->map_lat}}&lon={{$micropost->map_long}}&z=17&pointer=on">-->
+<img id="map" style="width: 350px; height: 350px;" src="https://map.yahooapis.jp/map/V1/static?appid={{ getenv('YAHOO_API_KEY') }}&pin1={{$micropost->map_lat}},{{$micropost->map_long}}&z=18">
 
-<script>
-var lati = <?php echo json_encode($micropost->map_lat); ?>;
-var long = <?php echo json_encode($micropost->map_long); ?>;
+<!--<script>-->
+<!--var lati = <?php echo json_encode($micropost->map_lat); ?>;-->
+<!--var long = <?php echo json_encode($micropost->map_long); ?>;-->
 
-window.onload = function(){
-  var ymap = new Y.Map("map");
-  ymap.drawMap(new Y.LatLng(lati, long), 17);
-  ymap.addControl(new Y.CenterMarkControl());
-  ymap.addControl(new Y.SliderZoomControlVertical());
-  console.log(lati, long);
-} 
-</script>
+<!--window.onload = function(){-->
+<!--  var ymap = new Y.Map("map");-->
+<!--  ymap.drawMap(new Y.LatLng(lati, long), 17);-->
+<!--  ymap.addControl(new Y.CenterMarkControl());-->
+<!--  ymap.addControl(new Y.SliderZoomControlVertical());-->
+<!--  console.log(lati, long);-->
+<!--} -->
+<!--</script>-->
 @endsection
