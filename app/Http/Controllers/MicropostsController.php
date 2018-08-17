@@ -16,7 +16,7 @@ class MicropostsController extends Controller
     {
         $data = [];
         if (\Auth::check()) {
-            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(5);
+            $microposts = DB::table('microposts')->orderBy('created_at', 'desc')->paginate(8);
             return view('microposts.index', ['microposts' => $microposts]);
         }else {
             return view('welcome');
