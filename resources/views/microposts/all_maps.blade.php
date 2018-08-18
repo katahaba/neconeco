@@ -12,17 +12,23 @@ $(function() {
     var ymap = new Y.Map("map");
     ymap.addControl( new Y.SliderZoomControl() );
     ymap.addControl( new Y.LayerSetControl() );
-    ymap.drawMap(new Y.LatLng(lat,lon), 9,"map");
+    ymap.addControl(new Y.SearchControl());
+    ymap.drawMap(new Y.LatLng(lat,lon), 6,"map");
  
     for ( var i = 0 ; i < markerData.length ; i++ ) {
         var lati = markerData[i]['map_lat'];
         var long = markerData[i]['map_long'];
         var image_path = markerData[i]['image_path'];
+        var search_tag = markerData[i]['search_tag'];
         var id = markerData[i]['id'];
-        var marker= new Y.Marker( new Y.LatLng(lati,long),{title:id} );
-        marker.bindInfoWindow('<img src=id>');
+        var icon = new Y.Icon(image_path, {iconSize: new Y.Size(50,50)});
+        var marker= new Y.Marker( new Y.LatLng(lati,long), {title:id} );
+        marker.bindInfoWindow(search_tag);
+       
         ymap.addFeature(marker);
-        }
+             
+
+    }
 });
 </script>
 @endsection

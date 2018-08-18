@@ -19,10 +19,10 @@ ul.pagination{padding:0px;margin:0px;}
      border-radius: 4px;
      cursor: pointer;
      }
-html, body{
+/*html, body{*/
 /*overflow: hidden;*/
-touch-action: none;
-}
+/*touch-action: none;*/
+/*}*/
 
 p.p {margin-bottom :2px;}
 
