@@ -1,4 +1,5 @@
-$(document).ready(function() {
+// リターンキーを押しても送信されないように13番(エンターキー)を無効化
+$(function() {
   $(window).keydown(function(event){
     if(event.keyCode == 13) {
       event.preventDefault();
@@ -7,6 +8,7 @@ $(document).ready(function() {
   });
 });
 
+//地図の表示と中心位置の緯度・経度取得
 $(function(){
   var ymap = new Y.Map("map");
   var lati=35.66572;

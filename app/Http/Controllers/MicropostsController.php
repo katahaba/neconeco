@@ -92,7 +92,7 @@ class MicropostsController extends Controller
         //dd($request);
         $keywords = [];
         $keywords = explode(",", $request->search_words);
-        // キーワードの数だけループして、LIKE句の配列を作る
+        // キーワードの数だけループし���、LIKE句の配列を作る
         $keywordCondition = [];
         foreach ($keywords as $keyword) {
             $keywordCondition[] = 'search_tag LIKE \'%' . $keyword . '%\'';
@@ -112,12 +112,10 @@ class MicropostsController extends Controller
     
     public function maps()
     {
-        $datas='';
         $microposts = DB::table('microposts')->get();
-        foreach ($microposts as $micropost){
-        $datas = $datas . "&pin$micropost->id=$micropost->map_lat,$micropost->map_long" ;
-        }
-        return view('microposts.all_maps', ['microposts' => $microposts, 'datas' => $datas]);
+        $data=$microposts->toJson();
+        // dd($data);
+        return view('microposts.all_maps', ['data' => $data]);
     }
     
      //ユーザー情報　編集    

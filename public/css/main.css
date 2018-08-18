@@ -28,13 +28,13 @@ p.p {margin-bottom :2px;}
 
 @media all and (max-width:667px) { 
     img.cat_image {width:100%; height:auto;}
-    img.allmap {width: 350px; height: 350px;}
+    div.allmap {width: 350px; height: 350px;}
 }
 @media all and (min-width:768px) and ( max-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    img.allmap {width: 500px; height: 500px;}
+    div.allmap {width: 500px; height: 500px;}
 }
 @media all and (min-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    img.allmap {width: 800px; height: 800px;}
+    div.allmap {width: 800px; height: 800px;}
 }

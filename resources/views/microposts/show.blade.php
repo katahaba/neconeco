@@ -28,9 +28,18 @@
         {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id]) !!}
     @endif
 </div>
-
-<div>
-<img id="map" style="width: 350px; height: 350px;" src="https://map.yahooapis.jp/map/V1/static?appid={{ getenv('YAHOO_API_KEY') }}&pin{{$micropost->id}}={{$micropost->map_lat}},{{$micropost->map_long}},,red&z=18">
-</div>   
-
+<div id="map" style="width: 350px; height: 350px;"></div>
+<script >
+$(function(){
+  var lati = @json($micropost->map_lat);
+  var long = @json($micropost->map_long);
+  var id = @json($micropost->id);
+  var ymap = new Y.Map("map");
+  ymap.addControl(new Y.SliderZoomControlVertical());
+  ymap.drawMap(new Y.LatLng(lati, long), 17);
+  var marker = new Y.Marker(new Y.LatLng(lati, long),{title:id});
+  ymap.addFeature(marker);
+  console.log(lati, long);
+} );
+</script>
 @endsection
