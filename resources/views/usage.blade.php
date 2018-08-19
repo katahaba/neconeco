@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<div class="container-fluid">
 <h1>Welcome to the NecoNeco</h1>
 <br>
 <br>
@@ -70,6 +71,7 @@
 <br>
 <br>
 <br>
-<p>検索バーで試しに「スイカ,子猫」と入力してるとスイカと子猫のタグで登録された写真が出てくるはずです。(,でつなげるとor検索になる。)</p>
+<p>検索バーで試しに「スイカ,子猫」と入力してみるとスイカ、または、子猫のタグで登録された写真が出てくるはずです。(半角,でつなげるとor検索になる。)</p>
 <img src="https://neconeco.s3.us-east-2.amazonaws.com/usage/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202018-08-20%200.17.05.png?">
+</div>
 @endsection
