@@ -29,6 +29,7 @@ ul.pagination{padding:0px;margin:0px;}
 p.p {margin-bottom :2px;}
 
 @media all and (max-width:667px) { 
+    .usage{width: 350px; height: 100%;}
     img.cat_image {width:100%; height:auto;}
     div.allmap {width: 350px; height: 350px;}
 }
