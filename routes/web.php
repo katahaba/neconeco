@@ -12,7 +12,9 @@
 */
 //トップ
 Route::get('/', 'MicropostsController@index');
-
+Route::get('/usage', function () {
+    return view('usage');
+});
 
 // ユーザ登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
