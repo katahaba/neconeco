@@ -8,9 +8,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">All Photos</a>
+                <a class="navbar-brand" href="#">NecoNeco</a>
                 
-                <form action="/microposts/search" method="GET">
+                <form id="search" action="/microposts/search" method="GET">
                   　<div id="search_field" class="input-group">
                         <input  type="text" class="form-control" name="search_words"  placeholder="検索ワード入力。 　OR検索の場合は「 , 」で繋げてください。">
                         <span class="input-group-btn">
@@ -21,9 +21,11 @@
             </div>
             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right"> 
+                <ul class="nav navbar-nav navbar-right">
+                    
                     <li><a href="/usage">使い方</a></li>
-                @if (Auth::check()) 
+                @if (Auth::check())
+                    <li><a href="/">All_Photos</a></li> 
                     <li>{!! link_to_route('microposts.maps','All Neco Maps') !!}</li>
                     <li>{!! link_to_route('users.index','Other Users') !!}</li>
                     <li class="dropdown">
