@@ -40,7 +40,7 @@
                         {!! Form::file('photo',null,['class' => 'form-control']) !!}    
                         <br> 
                         <div class="form-group">
-                            {!! Form::label('search_tag', '検索用タグを入力') !!}
+                            {!! Form::label('search_tag', '検索用タグを入力(任意)') !!}
                             {!! Form::text('search_tag', null,['class' => 'form-control']) !!}    
                         </div>
                         <br>
