@@ -14,12 +14,13 @@ window.onload = function(){
     if($.cookie("sortable")) {
         //cookieのsortableをいうデータの値を取得し、カンマ区切り文字列から配列に変換後、配列を逆転する
         var cookieValue = $.cookie("sortable").split(",").reverse();
-        console.log("cookieValue0", cookieValue);
+        console.log("$.cookie('sortable')", $.cookie("sortable"));
         //上記で取得した配列をループし、要素を追加
         $.each(cookieValue,function(index, value) {
             $('#'+value).prependTo(".sortable");
-            console.log("cookieValue_each", cookieValue);
+            console.log("$('#'+value)", $('#'+value));
+            
         });
-        
+        console.log("OUTcookieValue", cookieValue);
     }
 };

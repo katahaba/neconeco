@@ -36,7 +36,6 @@
    		    <img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
         @endforeach
     </ul>
-    
     </div>
-<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
+<!--<script src="{{ secure_asset('js/store_sort_order.js') }}"></script>-->
 @endsection

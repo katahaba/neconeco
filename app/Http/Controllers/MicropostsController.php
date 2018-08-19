@@ -92,7 +92,7 @@ class MicropostsController extends Controller
         //dd($request);
         $keywords = [];
         $keywords = explode(",", $request->search_words);
-        // キーワードの数だけループし���、LIKE句の配列を作る
+        // キーワードの数だけループし、LIKE句の配列を作る
         $keywordCondition = [];
         foreach ($keywords as $keyword) {
             $keywordCondition[] = 'search_tag LIKE \'%' . $keyword . '%\'';
@@ -105,7 +105,7 @@ class MicropostsController extends Controller
         
         // これをORでつなげて、文字列にする
         $keywordCondition = implode(' OR ', $keywordCondition);
-        $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(5);
+        $sql = DB::table('microposts')->whereRaw($keywordCondition)->orderBy('created_at', 'desc')->paginate(8);
        
         return view('microposts.search', ['sql' => $sql]);
     }

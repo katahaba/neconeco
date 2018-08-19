@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::orderBy('created_At', 'desc')->paginate(5);
         
         return view('users.index', [
             'users' => $users,
@@ -61,7 +61,7 @@ class UsersController extends Controller
     public function followings($id)
     {
         $user = User::find($id);
-        $followings = $user->followings()->paginate(5);
+        $followings = $user->followings()->orderBy('created_At', 'desc')->paginate(5);
 
         $data = [
             'user' => $user,
@@ -78,7 +78,7 @@ class UsersController extends Controller
     public function followers($id)
     {
         $user = User::find($id);
-        $followers = $user->followers()->paginate(5);
+        $followers = $user->followers()->orderBy('created_At', 'desc')->paginate(5);
         
         $data = [
             'user' => $user,
@@ -94,12 +94,11 @@ class UsersController extends Controller
     public function favoritings($id)
     {
         $user = User::find($id);
-        $favoritings = $user->favoritings()->paginate(5);
+        $favoritings = $user->favoritings()->orderBy('created_At', 'desc')->paginate(5);
         
         $data = [
             'user' => $user,
             'favoritings' => $favoritings,
-            //view:users.favoritingsで$favoritingsと呼び出すことで、ユーザーAのファヴォしたmicroposの一覧が表示される
         ];
         
         $data += $this->counts($user);

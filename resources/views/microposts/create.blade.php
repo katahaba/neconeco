@@ -36,7 +36,7 @@
                 <div class="col-xs-12 col-md-3 form-data">
                     <br>
                     {!! Form::open(['route' => ['microposts.store'], 'method' => 'POST', 'files' => true]) !!}   
-                        {!! Form::label('photo', 'photo_file (写真は必須で5Mb以下です)') !!}
+                        {!! Form::label('photo', 'Neco_photo_file (写真は必須で5Mb以下です)') !!}
                         {!! Form::file('photo',null,['class' => 'form-control']) !!}    
                         <br> 
                         <div class="form-group">
