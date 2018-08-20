@@ -17,7 +17,7 @@
         </aside>
         <div class="col-xs-8 col-md-10">
             <ul class="nav nav-tabs nav-justified">
-                @if (Auth::id() == $user->id)
+                 @if(Auth::id() == $user->id)
                     <li role="presentation" class="{{ Request::is('microposts/create') ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('microposts.create') }}">New Post <span class="badge"></span></a></li>
                 @endif
                 <li role="presentation" class="{{ Request::is('users/' . $user->id) ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('users.show', ['id' => $user->id]) }}">Photos <span class="badge">{{ $count_microposts }}</span></a></li>
@@ -25,17 +25,25 @@
                 <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
                 <li role="presentation" class="{{ Request::is('users/*/favoritings') ? 'active' : '' }}"><a style="text-align:left;" href="{{ route('users.favoritings', ['id' => $user->id]) }}">Favo_Photos  <span class="badge">{{ $count_favoritings }}</span></a></li>
             </ul>
-        </div>
+        </div>   
     </div>
 
     <div>
-    {!! $favoritings->render() !!}    
-       <ul class="sortable">
-        @foreach ($favoritings as $micropost)
-            <a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
-   		    <img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
-        @endforeach
-    </ul>
+        {!! $favoritings->render() !!} 
+            <!--<div class="spNone">-->
+            <!--@if (Auth::id() == $user->id)-->
+            <!--    {!! Form::open(['route' => ['users.favoritings','id' => $user->id], 'method' => 'GET']) !!}-->
+            <!--        {!! Form::hidden('sort') !!}-->
+            <!--        {!! Form::submit('このページの配置を保存', ['class' => 'btn btn-warning', 'id' => 'button']) !!}-->
+            <!--    {!! Form::close() !!}           -->
+            <!--@endif-->
+            <!--</div> -->
+        <ul class="sortable">
+            @foreach ($favoritings as $micropost)
+                <a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
+           	    <img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
+            @endforeach
+        </ul>
     </div>
 <script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

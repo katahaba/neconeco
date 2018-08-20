@@ -7,10 +7,10 @@ window.onload = function(){
             var updateArray =  $(".sortable").sortable("toArray").join(",");
             //変換された文字列をcookieに３０日保持で格納
             $.cookie("sortable", updateArray, {expires: 30});
-            console.log("updateArray:",updateArray);
+            
         }       
     });
-    //すでにsortableというcookieがあるかをチェック
+     //すでにsortableというcookieがあるかをチェック
     if($.cookie("sortable")) {
         //cookieのsortableをいうデータの値を取得し、カンマ区切り文字列から配列に変換後、配列を逆転する
         var cookieValue = $.cookie("sortable").split(",").reverse();
@@ -24,3 +24,4 @@ window.onload = function(){
         console.log("OUTcookieValue", cookieValue);
     }
 };
+

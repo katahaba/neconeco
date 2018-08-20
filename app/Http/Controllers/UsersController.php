@@ -91,6 +91,33 @@ class UsersController extends Controller
     }
     
     
+    // public function favoritings(Request $request, $id)
+    // {
+    //     $user = User::find($id);
+    //     if( !empty($request->sort) ){
+    //         $user->fovo_photos_order = $request->sort ?: NULL;
+    //         $user->save();
+    //         //データを呼び出して更新する
+    //     }
+        
+    //     //print_r($request->sort);
+        
+    //     $favoritings = $user->favoritings()->paginate(5);
+    //     //$result_arr = unserialize($result_arr);
+        
+    //     $data = [
+    //         'user' => $user,
+    //         'favoritings' => $favoritings,
+    //         'result_arr' =>  $user->fovo_photos_order,
+    //         'count' => $this->counts($user)
+    //     ];
+    //     //$data += $this->counts($user);
+        
+    //     dd($data);
+        
+    //     return view('users.favoritings', $data);
+    // }
+    
     public function favoritings($id)
     {
         $user = User::find($id);
@@ -106,3 +133,5 @@ class UsersController extends Controller
         return view('users.favoritings', $data);
     }
 }
+
+

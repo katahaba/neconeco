@@ -4,11 +4,22 @@ ul {padding-left:0px;}
 
 #search{line-height:12px;}
 
+a.navbar-brand {padding-top:18px; padding-left:25px; padding-bottom:10px; }
+
+.navbar-inverse .navbar-brand {color:#FFF;}
+
+.navbar-inverse .navbar-nav>li>a {color:#D3D3D3;}
+
 div.container-fluid{padding-left:5px ;padding-right: 5px;}
 
 button.navbar-toggle{margin-top:10px; margin-bottom:14px;}
 
-a.navbar-brand {padding-top:18px; padding-left:25px; padding-bottom:10px;}
+
+
+/*.nav.navbar-nav.navbar-right li a {*/
+/*    color: #D3D3D3;*/
+/*}*/
+/*a.navbar-inverse {color:#D3D3D3;}*/
 
 div.panel-body {padding-left:5px;}
 
@@ -18,7 +29,8 @@ div.show {padding:0px 15px;}
 
 ul.pagination{padding:0px;margin:0px;}
 
-
+#bs-example-navbar-collapse-1{padding-right:20px;}
+                
 /*body {line-height:0px;}*/
 
 #photo {color: black;
@@ -27,23 +39,25 @@ ul.pagination{padding:0px;margin:0px;}
      border-radius: 4px;
      cursor: pointer;
      }
-/*html, body{*/
-/*overflow: hidden;*/
-/*touch-action: none;*/
-/*}*/
 
 p.p {margin-bottom :2px;}
 
+div.panel.panel-default{margin-bottom:0px;}
+
+div.row.show{margin-top:5px;}	
+
 @media all and (max-width:667px) { 
+    .spNone { display: none;}
     .usage{width: 350px; height: 100%;}
     img.cat_image {width:100%; height:auto;}
-    div.allmap {width: 350px; height: 350px;}
+    div.allmap {width: 375px; height: 375px;}
 }
-@media all and (min-width:768px) and ( max-width:1024px) {
+@media all and (min-width:668px) and ( max-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    div.allmap {width: 500px; height: 500px;}
+    div.allmap {width: 700px; height: 700px;}
 }
 @media all and (min-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    div.allmap {width: 1200px; height: 800px;}
+    div.allmap {width: 1000px; height: 1000px;}
 }
+

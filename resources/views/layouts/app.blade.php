@@ -7,9 +7,9 @@
 
         <title>NecoNeco</title>
         
-        <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main.css') }}" media="all">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
+        <link rel="stylesheet" type="text/css" href="{{ secure_asset('css/main.css') }}" media="all">
+
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
