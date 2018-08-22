@@ -30,14 +30,6 @@
 
     <div>
         {!! $favoritings->render() !!} 
-            <!--<div class="spNone">-->
-            <!--@if (Auth::id() == $user->id)-->
-            <!--    {!! Form::open(['route' => ['users.favoritings','id' => $user->id], 'method' => 'GET']) !!}-->
-            <!--        {!! Form::hidden('sort') !!}-->
-            <!--        {!! Form::submit('このページの配置を保存', ['class' => 'btn btn-warning', 'id' => 'button']) !!}-->
-            <!--    {!! Form::close() !!}           -->
-            <!--@endif-->
-            <!--</div> -->
         <ul class="sortable">
             @foreach ($favoritings as $micropost)
                 <a class="float" id="{{$micropost->id}}"  href="{{ route('microposts.show', ['id' => $micropost->id]) }}">
@@ -45,5 +37,6 @@
             @endforeach
         </ul>
     </div>
+
 <script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

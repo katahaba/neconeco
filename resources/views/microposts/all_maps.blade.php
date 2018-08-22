@@ -27,8 +27,9 @@ $(function() {
         var marker = new Y.Marker(new Y.LatLng(lati, long),{title:id}); 
         ymap.addFeature(marker);
             
-
     }
 });
 </script>
+
+
 @endsection

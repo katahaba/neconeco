@@ -13,7 +13,7 @@ $(function(){
   var ymap = new Y.Map("map");
   var lati=35.66572;
   var long=139.73100;
-  ymap.drawMap(new Y.LatLng(lati, long), 17);
+  ymap.drawMap(new Y.LatLng(lati, long), 16);
   ymap.addControl(new Y.CenterMarkControl());
   ymap.addControl(new Y.SliderZoomControlVertical());
   ymap.addControl(new Y.SearchControl());
@@ -30,5 +30,3 @@ $(function(){
     $('[name="long"]').val(long);
   })
 });
-
-

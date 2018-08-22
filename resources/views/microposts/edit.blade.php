@@ -24,6 +24,6 @@
                 {!! Form::close() !!}
             @endif
     </div> 
-
+<script src="https://maps.googleapis.com/maps/api/js?key={{ getenv('GOOGLE_MAPS_API_KEY') }}&callback=initMap" sensor=true async defer></script>
 <script src="{{ secure_asset('js/load_map.js') }}"></script>
 @endsection

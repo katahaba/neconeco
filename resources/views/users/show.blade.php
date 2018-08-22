@@ -41,5 +41,6 @@
     		@endforeach
     	</ul>
 	</div>
+
 <script src="{{ secure_asset('js/store_sort_order.js') }}"></script>
 @endsection

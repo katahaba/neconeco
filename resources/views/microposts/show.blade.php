@@ -28,7 +28,7 @@
         {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id]) !!}
     @endif
 </div>
-<div id="map" style="width: 350px; height: 350px;"></div>
+<div id="map" style="width:350px;height:350px;"></div>
 <script >
 $(function(){
   var lati = @json($micropost->map_lat);
@@ -36,7 +36,7 @@ $(function(){
   var id = @json($micropost->id);
   var ymap = new Y.Map("map");
   ymap.addControl(new Y.SliderZoomControlVertical());
-  ymap.drawMap(new Y.LatLng(lati, long), 17);
+  ymap.drawMap(new Y.LatLng(lati, long), 16);
   var marker = new Y.Marker(new Y.LatLng(lati, long),{title:id});
   ymap.addFeature(marker);
   console.log(lati, long);

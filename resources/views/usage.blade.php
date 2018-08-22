@@ -45,7 +45,7 @@
 <br>
 <br>
 <br>
-<p>All Photos、ユーザープロファイルのPhotos、Favo_Photosの写真はグリッドで配置を変えることができます。更新ボタンを押してもキャッシュに配置が保存されています。</p>
+<p>All_Photos、自分や他のユーザープロファイルのPhotos、Favo_Photosの写真はグリッドで配置を変えることができます。更新ボタンを押してもcookieに配置が保存されています。</p>
 <img class="usage" src="https://neconeco.s3.us-east-2.amazonaws.com/usage/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202018-08-20%2018.24.15.png">
 <br>
 <br>
@@ -65,7 +65,7 @@
 <br>
 <br>
 <br>
-<p>また、ナビバーのAll Neco Mapsから地図上に(データが登録されていれば)すべての投稿写真の位置が表示されます。</p>
+<p>また、ナビバーのAll Neco Mapsでは(データが登録されていれば)すべての投稿写真の位置が地図上に表示されます。</p>
 <img class="usage"src="https://neconeco.s3.us-east-2.amazonaws.com/usage/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202018-08-20%200.16.42.png">
 <br>
 <br>
