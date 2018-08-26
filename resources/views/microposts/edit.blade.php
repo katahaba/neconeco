@@ -36,8 +36,8 @@ $(function() {
   });
 
 //地図の表示と中心位置の緯度・経度取得
-  var lati = @json($micropost->map_lat);
-  var long = @json($micropost->map_long);
+  var lati = parseFloat(@json($micropost->map_lat));
+  var long = parseFloat(@json($micropost->map_long));
   var location = {lat:lati, lng:long};
   console.log("edit-locatin",location);
   var options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
