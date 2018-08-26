@@ -65,7 +65,7 @@
 <br>
 <br>
 <br>
-<p>また、ナビバーのAll Neco Mapsでは(データが登録されていれば)すべての投稿写真の位置が地図上に表示されます。</p>
+<p>また、ナビバーのAll_Neco_Mapsでは(データが登録されていれば)すべての投稿写真の位置が地図上に表示されます。</p>
 <img class="usage"src="https://neconeco.s3.us-east-2.amazonaws.com/usage/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202018-08-20%200.16.42.png">
 <br>
 <br>

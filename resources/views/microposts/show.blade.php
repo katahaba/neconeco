@@ -31,15 +31,21 @@
 <div id="map" style="width:350px;height:350px;"></div>
 <script >
 $(function(){
-  var lati = @json($micropost->map_lat);
-  var long = @json($micropost->map_long);
-  var id = @json($micropost->id);
-  var ymap = new Y.Map("map");
-  ymap.addControl(new Y.SliderZoomControlVertical());
-  ymap.drawMap(new Y.LatLng(lati, long), 16);
-  var marker = new Y.Marker(new Y.LatLng(lati, long),{title:id});
-  ymap.addFeature(marker);
-  console.log(lati, long);
-} );
+  var lati = parseFloat(@json($micropost->map_lat));
+  var long = parseFloat(@json($micropost->map_long));
+  var location = {lat:lati, lng:long};
+  console.log("showlocatin",location);
+  var options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
+  var map = new google.maps.Map(document.getElementById('map'), options);
+  var marker=new google.maps.Marker({position: location,map: map,});
+    
+//   var id = @json($micropost->id);
+//   var ymap = new Y.Map("map");
+//   ymap.addControl(new Y.SliderZoomControlVertical());
+//   ymap.drawMap(new Y.LatLng(lati, long), 16);
+//   var marker = new Y.Marker(new Y.LatLng(lati, long),{title:id});
+//   ymap.addFeature(marker);
+//   console.log(lati, long);
+});
 </script>
 @endsection

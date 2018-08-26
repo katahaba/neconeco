@@ -14,7 +14,8 @@ div.container-fluid{padding-left:5px ;padding-right: 5px;}
 
 button.navbar-toggle{margin-top:12px; margin-bottom:12px;}
 
-
+/*#map{touch-action: none}*/
+/*.allmap{touch-action: none}*/
 
 /*.nav.navbar-nav.navbar-right li a {*/
 /*    color: #D3D3D3;*/
@@ -50,27 +51,86 @@ div.row.show{margin-top:5px;}
     /*.spNone { display: none;}*/
     .usage{max-width:100%;width:375px; height: auto;}
     img.cat_image {width:375px;height:auto;}
-    div.allmap {width:375px; height:375px;}
+    div.allmap {width:370px; height:370px;}
 }
 @media all and (max-width:667px) { 
     .usage{width:667px; height: auto;}
     img.cat_image {max-width:100%;width:667px;height:auto;}
-    div.allmap {width:667px; height:667px;}
+    div.allmap {width:660px; height:660px;}
 }
 @media all and (min-width:668px) and ( max-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    div.allmap {width:668px; height:668px;}
+    div.allmap {width:660px; height:660px;}
 }
 @media all and (min-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    div.allmap {width:1024px; height:1024px;}
+    div.allmap {width:1020px; height:800px;}
 }
 
 
 
+/*google map serach box*/
+#infowindow-content .title {
+font-weight: bold;
+}
 
-    /*html, body {*/
-    /*height: 100%;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-    /*}*/
+#infowindow-content {
+display: none;
+}
+
+#map #infowindow-content {
+display: inline;
+}
+
+.pac-card {
+margin: 10px 10px 0 0;
+border-radius: 2px 0 0 2px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+outline: none;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+background-color: #fff;
+font-family: Roboto;
+}
+
+#pac-container {
+padding-bottom: 12px;
+margin-right: 12px;
+}
+
+.pac-controls {
+display: inline-block;
+padding: 5px 11px;
+}
+
+.pac-controls label {
+font-family: Roboto;
+font-size: 13px;
+font-weight: 300;
+}
+
+#pac-input {
+background-color: #fff;
+font-family: Roboto;
+font-size: 15px;
+font-weight: 300;
+margin-left: 12px;
+padding: 0 11px 0 13px;
+text-overflow: ellipsis;
+width: 400px;
+}
+
+#pac-input:focus {
+border-color: #4d90fe;
+}
+
+#title {
+color: #fff;
+background-color: #4d90fe;
+font-size: 25px;
+font-weight: 500;
+padding: 6px 12px;
+}
+#target {
+width: 345px;
+}

@@ -45,6 +45,7 @@
                     </div>
                     <br>
                     <h5>中心位置を撮影場所として保存: 任意</h5>
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                     <div id="map" style="width:350px;height:350px;"></div>
                     <br>
                     
@@ -57,8 +58,17 @@
     </div>   
     </div>
     @endif
-    
+<script>
+$(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>    
 <script src="{{ secure_asset('js/validate_file.js') }}"></script>
-<script src="{{ secure_asset('js/load_map.js') }}"></script>
-
+<!--<script src="{{ secure_asset('js/Yahoo/Yload_map.js') }}"></script>-->
+<script src="{{ secure_asset('js/gmaps/load_map.js') }}"></script>
 @endsection
