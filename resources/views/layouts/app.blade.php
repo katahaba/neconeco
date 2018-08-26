@@ -15,7 +15,7 @@
         <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!--<script src="https://map.yahooapis.jp/js/V1/jsapi?appid={{ getenv('YAHOO_API_KEY') }}"></script>-->
-        <script src="https://maps.googleapis.com/maps/api/js?&v=3&libraries=places&key={{getenv('GOOGLE_MAPS_KEY')}}" async defer></script>  
+        <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&key={{getenv('GOOGLE_MAPS_KEY')}}" async defer></script>  
         
     </head>
     <body>

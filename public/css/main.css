@@ -47,26 +47,30 @@ div.panel.panel-default{margin-bottom:0px;}
 
 div.row.show{margin-top:5px;}	
 
-@media all and (max-width:375px) { 
+@media all and (min-width:375px) { 
     /*.spNone { display: none;}*/
-    .usage{max-width:100%;width:375px; height: auto;}
+    .usage{width:375px; height: auto;}
     img.cat_image {width:375px;height:auto;}
-    div.allmap {width:370px; height:370px;}
+    div.allmap {width:375px; height:375px;}
 }
-@media all and (max-width:667px) { 
+@media all and (min-width:480px) { 
+    .usage{width:480px; height: auto;}
+    img.cat_image {width:480px;height:auto;}
+    div.allmap {width:480px; height:360px;}
+}
+@media all and (min-width:667px) and ( max-width:1024px) {
     .usage{width:667px; height: auto;}
-    img.cat_image {max-width:100%;width:667px;height:auto;}
-    div.allmap {width:660px; height:660px;}
-}
-@media all and (min-width:668px) and ( max-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    div.allmap {width:660px; height:660px;}
+    div.allmap {width:667px; height:500px;}
 }
 @media all and (min-width:1024px) {
     img.cat_image {width:auto; height:350px;}
-    div.allmap {width:1020px; height:800px;}
+    div.allmap {width:1024px; height:768px;}
 }
-
+@media all and (min-width:1366px) {
+    img.cat_image {width:auto; height:350px;}
+    div.allmap {width:1366px; height:1024px;}
+}
 
 
 /*google map serach box*/
