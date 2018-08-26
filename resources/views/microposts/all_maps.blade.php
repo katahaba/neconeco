@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="allmap"  id="map"></div>
+
 <script>
 $(function(){
   var markerData = JSON.parse(@json($data));//phpでjson化したものを再度配列に
@@ -23,7 +24,7 @@ $(function(){
     lat =  parseFloat(markerData[i]['map_lat']);      
     lng =  parseFloat(markerData[i]['map_long']);
     console.log("lat",lat,"lng",lng);
-    // var image_path = markerData[i]['image_path'];
+    var image_path = markerData[i]['image_path'];
     // var search_tag = markerData[i]['search_tag'];
     var id = markerData[i]['id'];
     
@@ -31,8 +32,9 @@ $(function(){
     if(maxlng<lng){maxlng=lng}else{maxlng=maxlng}
     if(minlat>lat){minlat=lat}else{minlat=minlat}
     if(minlng>lng){minlng=lng}else{minlng=minlng}
-    
-    markers[i]=new google.maps.Marker({position: {lat:lat,lng:lng},map: map, url: "https://microposts9999.herokuapp.com/microposts/"+id, label:""+id});
+    // var image = new google.maps.MarkerImage(image_path, new google.maps.Size(100,100), new google.maps.Point(0,0));
+     
+    markers[i]=new google.maps.Marker({ position: {lat:lat,lng:lng},map: map,  url: "https://microposts9999.herokuapp.com/microposts/"+id, label:""+id});
     // console.log( markers[i]);
     google.maps.event.addListener(markers[i], 'click', function() {
     window.location.href = this.url;
