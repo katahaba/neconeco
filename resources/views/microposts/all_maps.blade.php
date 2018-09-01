@@ -34,7 +34,7 @@ $(function(){
     if(minlng>lng){minlng=lng}else{minlng=minlng}
     // var image = new google.maps.MarkerImage(image_path, new google.maps.Size(100,100), new google.maps.Point(0,0));
      
-    markers[i]=new google.maps.Marker({ position: {lat:lat,lng:lng},map: map,  url: "https://microposts9999.herokuapp.com/microposts/"+id, label:""+id});
+    markers[i]=new google.maps.Marker({ position: {lat:lat,lng:lng},map: map,  url: "{{ getenv('base_url') }}"+id, label:""+id});
     // console.log( markers[i]);
     google.maps.event.addListener(markers[i], 'click', function() {
     window.location.href = this.url;
