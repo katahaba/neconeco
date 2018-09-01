@@ -24,7 +24,7 @@ $(function(){
     lat =  parseFloat(markerData[i]['map_lat']);      
     lng =  parseFloat(markerData[i]['map_long']);
     // console.log("lat",lat,"lng",lng);
-    var image_path = markerData[i]['image_path'];
+    // var image_path = markerData[i]['image_path'];
     // var search_tag = markerData[i]['search_tag'];
     var id = markerData[i]['id'];
     

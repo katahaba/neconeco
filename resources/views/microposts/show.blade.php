@@ -6,7 +6,7 @@
     <div class="alert alert-success">{!! \Session::get('success') !!}</div>
 @endif
 
-<img class="cat_image"  src="{{ secure_asset($micropost->image_path)}}">
+<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}">
 
 <p class="p">検索タグ: {{ $micropost->search_tag }}</p>
 <p class="p">POST_ID: {{$micropost->id}}</p>

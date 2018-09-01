@@ -6,7 +6,7 @@
             @if (\Session::has('updated'))
             <div class="alert alert-success">{!! \Session::get('updated') !!}</div>
             @endif
-            <img class="cat_image" src="{{ secure_asset($micropost->image_path)}}"></a>
+            <img class="cat_image" src="{{ secure_asset($micropost->image_path)}}">
             <br>
             @if (Auth::id() === $micropost->user_id)
                 {!! Form::open(['route' => ['microposts.update', $micropost->id], 'method' => 'PUT']) !!}   
