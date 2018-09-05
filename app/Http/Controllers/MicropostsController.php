@@ -9,6 +9,7 @@ use Validator;
 use Image;
 use App\Micropost;
 use App\User;
+use App\Comment;
 
 class MicropostsController extends Controller
 {
@@ -28,7 +29,11 @@ class MicropostsController extends Controller
     {
         $user = \Auth::user();
         $micropost = Micropost::find($id);
-        $data = ['user' => $user, 'micropost' => $micropost];
+        $comments = DB::table('comments')->where('micropost_id', $id)->orderBy('created_at', 'desc')->paginate(8);
+        // $comments = $micropost->comments()->orderBy('created_at', 'desc');
+        // dd($comments);
+        $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
+        
         return view('microposts.show',$data);
     }
     
@@ -66,7 +71,7 @@ class MicropostsController extends Controller
         ]);
         
         
-        $path = Storage::disk('s3')->putFile('images', $request->file('photo'), 'public'); // Ｓ３/images/にアップ
+        $path = Storage::disk('s3')->putFile('images', $request->file('photo'), 'public'); // s3/images/にアップ
         
         $url = Storage::disk('s3')->url($path);
         
@@ -137,4 +142,6 @@ class MicropostsController extends Controller
         
         return view('microposts.show', ['micropost' =>$micropost ])->with('updated','データは更新されました。');
     }
+    
+    
 }

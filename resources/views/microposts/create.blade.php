@@ -69,6 +69,5 @@ $(function() {
 });
 </script>    
 <script src="{{ secure_asset('js/validate_file.js') }}"></script>
-<!--<script src="{{ secure_asset('js/Yahoo/Yload_map.js') }}"></script>-->
 <script src="{{ secure_asset('js/gmaps/load_map.js') }}"></script>
 @endsection

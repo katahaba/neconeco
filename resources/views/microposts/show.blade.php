@@ -25,27 +25,50 @@
 
 <div>
     @if (Auth::id() === $micropost->user_id)
-        {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id]) !!}
+        {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id,'class' => 'btn btn-success']) !!}
     @endif
 </div>
 <div id="map" style="width:350px;height:350px;"></div>
+<br>
+<br>
+    <p>コメント</p>
+    <div class="row">
+        <div class="col-xs-12">
+            {!! Form::open(['action' => ['CommentsController@store', $micropost->id]]) !!}
+                <div class="form-group">
+                    {!! Form::textarea('comment', old('comment'), ['class' => 'form-control', 'rows' => '2']) !!}
+                </div>
+                {!! Form::submit('New comment', ['class' => 'btn btn-warning btn-block']) !!}
+        </div>
+    </div>
+<br>    
+<br>    
+    <p>コメント一覧</p>
+    {!! $comments->render() !!}
+    <ul class="media-list">
+@foreach($comments as $comment)
+    <li class="media">
+        <div class="media-right">
+        <div class="media-body">
+            <div>
+                {!! link_to_route('users.show', $comment->user_id, ['id' => $comment->user_id]) !!}:{!! nl2br(e($comment->comment)) !!}:{!! $comment->created_at !!}
+            </div>
+        </div>
+        </div>
+    </li>
+@endforeach
+</ul>
+
+
 <script >
 $(function(){
-  var lati = parseFloat(@json($micropost->map_lat));
-  var long = parseFloat(@json($micropost->map_long));
+  var lati = parseFloat(@json($micropost -> map_lat));
+  var long = parseFloat(@json($micropost -> map_long));
   var location = {lat:lati, lng:long};
   console.log("showlocatin",location);
   var options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
   var map = new google.maps.Map(document.getElementById('map'), options);
   var marker=new google.maps.Marker({position: location,map: map,});
-    
-//   var id = @json($micropost->id);
-//   var ymap = new Y.Map("map");
-//   ymap.addControl(new Y.SliderZoomControlVertical());
-//   ymap.drawMap(new Y.LatLng(lati, long), 16);
-//   var marker = new Y.Marker(new Y.LatLng(lati, long),{title:id});
-//   ymap.addFeature(marker);
-//   console.log(lati, long);
 });
 </script>
 @endsection
