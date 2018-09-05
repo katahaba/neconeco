@@ -5,8 +5,8 @@
 @if (\Session::has('success'))
     <div class="alert alert-success">{!! \Session::get('success') !!}</div>
 @endif
-
-<img class="cat_image" src="{{ secure_asset($micropost->image_path)}}">
+<div style="padding-left:0px;" class="col-xs-12 col-md-12">
+<img  class="cat_image" src="{{ secure_asset($micropost->image_path)}}">
 
 <p class="p">検索タグ: {{ $micropost->search_tag }}</p>
 <p class="p">POST_ID: {{$micropost->id}}</p>
@@ -22,31 +22,29 @@
     @include('favorites.favorite_button', ['micropost' => $micropost])
 </div>
 <br>
-
 <div>
     @if (Auth::id() === $micropost->user_id)
         {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id,'class' => "btn btn-info pull-right"]) !!}
     @endif
 </div>
-<div id="map" style="width:370px;height:370px;"></div>
-<br>
-<br>
+
+
 
 <div class="row bootstrap snippets" >
-    <div class="col-md-5  col-sm-12">
+    <div class="col-xs-12 col-md-8">
         <div class="comment-wrapper">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Comment panel
                 </div>
-                @if (Auth::id() != $micropost->user_id)
+                
                     <div id="panel-body" class="panel-body">
                         {!! Form::open(['action' => ['CommentsController@store', $micropost->id]]) !!}
                         {!! Form::textarea('comment', old('comment'), ['class' => 'form-control', 'rows' => '3', 'placeholder'=>'write a comment...']) !!}
                         {!! Form::submit('New comment', ['class' =>"btn btn-info pull-right"]) !!}
                         {!! Form::close() !!}
                     </div>
-                @endif
+                
                     <div class="clearfix"></div>
                     <hr>
                     <ul id="media-list" class="media-list">
@@ -56,7 +54,7 @@
                                     <span class="text-muted pull-right">
                                         <small class="text-muted">{{ $comment->created_at }}</small>
                                     </span>
-                                    <strong class="text-success">{!! link_to_route('users.show', $comment->user->name, ['id' => $comment->user_id]) !!}</strong>
+                                    <span class="text-success">{!! link_to_route('users.show', $comment->user->name, ['id' => $comment->user_id]) !!}</span>
                                     <p>
                                         {!! nl2br(e($comment->comment)) !!}
                                     </p>
@@ -69,7 +67,8 @@
         </div>
     </div>
 </div>
-
+<br>
+<div id="map" style="width:370px; height:370px; margin-left:5px;" }></div>
 
 
 <script >

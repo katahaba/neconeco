@@ -8,7 +8,6 @@
     @if(Auth::id() == $user->id)
     {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
         <div class="form-group ">
-        <!--{!! Form::label('name', '名前:') !!}-->
         {!! Form::text('name',null,['class' => 'form-control']) !!}
         {!! Form::submit('名前更新', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
         {!! Form::close() !!}

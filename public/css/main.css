@@ -1,5 +1,5 @@
 a.float {float:left}
-/*div.navbar-header {margin-top:5;}*/
+
 ul {padding-left:0px;}
 
 #search{line-height:12px;}
@@ -14,13 +14,6 @@ div.container-fluid{padding-left:5px ;padding-right: 5px;}
 
 button.navbar-toggle{margin-top:12px; margin-bottom:12px;}
 
-/*#map{touch-action: none}*/
-/*.allmap{touch-action: none}*/
-
-/*.nav.navbar-nav.navbar-right li a {*/
-/*    color: #D3D3D3;*/
-/*}*/
-/*a.navbar-inverse {color:#D3D3D3;}*/
 
 div.panel-body {padding-left:5px;}
 
@@ -56,7 +49,7 @@ div.row.show{margin-top:5px;}
 @media all and (min-width:375px) { 
     /*.spNone { display: none;}*/
     .usage{width:375px; height: auto;}
-    img.cat_image {width:375px;height:auto;}
+     img.cat_image {width:375px;height:auto;}
     div.allmap {width:375px; height:375px;}
 }
 @media all and (min-width:480px) { 
@@ -70,10 +63,12 @@ div.row.show{margin-top:5px;}
     div.allmap {width:667px; height:500px;}
 }
 @media all and (min-width:1024px) {
+    .usage{width:667px; height: auto;}
     img.cat_image {width:auto; height:350px;}
     div.allmap {width:1024px; height:768px;}
 }
 @media all and (min-width:1366px) {
+    .usage{width:667px; height: auto;}
     img.cat_image {width:auto; height:350px;}
     div.allmap {width:1366px; height:1024px;}
 }
@@ -170,4 +165,8 @@ body{margin-top:20px;}
 
 #panel-body{
     padding-right:7px;
+}
+
+aside.col-xs-6 col-md-4{
+   padding-right :5px; 
 }
