@@ -27,7 +27,7 @@
     </div> 
 
 <script>
-$(function() { 
+window.onload=function() { 
   $(window).keydown(function(event){
     if(event.keyCode == 13) {
       event.preventDefault();
@@ -106,6 +106,6 @@ $(function() {
     $('[name="lat"]').val(location.lat());
     $('[name="long"]').val(location.lng());
   });
-});
+}
 </script>
 @endsection

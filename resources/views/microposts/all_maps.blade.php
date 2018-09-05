@@ -5,7 +5,7 @@
 <div class="allmap"  id="map"></div>
 
 <script>
-$(function(){
+window.onload=function(){
   var markerData = JSON.parse(@json($data));//phpでjson化したものを再度配列に
   // console.log(markerData);
   var lat= 0;
@@ -49,6 +49,6 @@ $(function(){
   var bounds = new google.maps.LatLngBounds(sw, ne);
   //自動調整
   map.fitBounds(bounds,5);
-});
+}
 </script>
 @endsection

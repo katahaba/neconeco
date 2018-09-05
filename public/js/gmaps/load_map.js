@@ -1,5 +1,5 @@
 // リターンキーを押しても送信されないように13番(エンターキー)を無効化
-$(function() { 
+window.onload=function() { 
   $(window).keydown(function(event){
     if(event.keyCode == 13) {
       event.preventDefault();
@@ -79,5 +79,5 @@ $(function() {
   });
     
   
-});
+}
 

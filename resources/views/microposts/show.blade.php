@@ -31,7 +31,7 @@
 
 
 <div class="row bootstrap snippets" >
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-4">
         <div class="comment-wrapper">
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -72,7 +72,7 @@
 
 
 <script >
-$(function(){
+window.onload=function(){
   var lati = parseFloat(@json($micropost -> map_lat));
   var long = parseFloat(@json($micropost -> map_long));
   var location = {lat:lati, lng:long};
@@ -80,6 +80,6 @@ $(function(){
   var options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
   var map = new google.maps.Map(document.getElementById('map'), options);
   var marker=new google.maps.Marker({position: location,map: map,});
-});
+}
 </script>
 @endsection
