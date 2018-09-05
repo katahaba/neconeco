@@ -25,39 +25,51 @@
 
 <div>
     @if (Auth::id() === $micropost->user_id)
-        {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id,'class' => 'btn btn-success']) !!}
+        {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id,'class' => "btn btn-info pull-right"]) !!}
     @endif
 </div>
-<div id="map" style="width:350px;height:350px;"></div>
+<div id="map" style="width:370px;height:370px;"></div>
 <br>
 <br>
-    <p>コメント</p>
-    <div class="row">
-        <div class="col-xs-12">
-            {!! Form::open(['action' => ['CommentsController@store', $micropost->id]]) !!}
-                <div class="form-group">
-                    {!! Form::textarea('comment', old('comment'), ['class' => 'form-control', 'rows' => '2']) !!}
+
+<div class="row bootstrap snippets" >
+    <div class="col-md-5  col-sm-12">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Comment panel
                 </div>
-                {!! Form::submit('New comment', ['class' => 'btn btn-warning btn-block']) !!}
-        </div>
-    </div>
-<br>    
-<br>    
-    <p>コメント一覧</p>
-    {!! $comments->render() !!}
-    <ul class="media-list">
-@foreach($comments as $comment)
-    <li class="media">
-        <div class="media-right">
-        <div class="media-body">
-            <div>
-                {!! link_to_route('users.show', $comment->user_id, ['id' => $comment->user_id]) !!}:{!! nl2br(e($comment->comment)) !!}:{!! $comment->created_at !!}
+                @if (Auth::id() != $micropost->user_id)
+                    <div id="panel-body" class="panel-body">
+                        {!! Form::open(['action' => ['CommentsController@store', $micropost->id]]) !!}
+                        {!! Form::textarea('comment', old('comment'), ['class' => 'form-control', 'rows' => '3', 'placeholder'=>'write a comment...']) !!}
+                        {!! Form::submit('New comment', ['class' =>"btn btn-info pull-right"]) !!}
+                        {!! Form::close() !!}
+                    </div>
+                @endif
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul id="media-list" class="media-list">
+                        @foreach($comments as $comment)
+                            <li class="media">
+                                <div class="media-body">
+                                    <span class="text-muted pull-right">
+                                        <small class="text-muted">{{ $comment->created_at }}</small>
+                                    </span>
+                                    <strong class="text-success">{!! link_to_route('users.show', $comment->user->name, ['id' => $comment->user_id]) !!}</strong>
+                                    <p>
+                                        {!! nl2br(e($comment->comment)) !!}
+                                    </p>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
-        </div>
-    </li>
-@endforeach
-</ul>
+    </div>
+</div>
+
 
 
 <script >

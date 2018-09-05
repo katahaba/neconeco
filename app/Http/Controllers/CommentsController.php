@@ -14,13 +14,14 @@ class CommentsController extends Controller
 {
     
    
-    public function store(Request $request, $micropost_id)
+    public function store(Request $request, $id)
     {
-        $micropost = Micropost::find($micropost_id);
+        $micropost = Micropost::find($id);
         $this->validate($request, ['comment' => 'required|max:191', ]);
         $micropost->comments()->create([
+            'micropost_id' => $id,
             'user_id' => \Auth::User()->id,
-            'micropost_id' => $micropost_id,
+            // 'user_name' => \Auth::User()->name,
             'comment' => $request->comment,
         ]);
         

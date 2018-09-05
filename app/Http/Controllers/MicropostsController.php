@@ -29,9 +29,7 @@ class MicropostsController extends Controller
     {
         $user = \Auth::user();
         $micropost = Micropost::find($id);
-        $comments = DB::table('comments')->where('micropost_id', $id)->orderBy('created_at', 'desc')->paginate(8);
-        // $comments = $micropost->comments()->orderBy('created_at', 'desc');
-        // dd($comments);
+        $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
         
         return view('microposts.show',$data);

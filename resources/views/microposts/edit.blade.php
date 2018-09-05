@@ -17,7 +17,7 @@
                     <br>
                     <h5>中心位置を撮影場所として更新: 任意</h5>
                     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-                    <div id="map" style="width: 350px; height: 350px;"></div>
+                    <div id="map" style="width: 370px; height: 370px;"></div>
                     <br>
                     {!! Form::submit('Update', ['class' => 'btn btn-warning', 'id' => 'button']) !!}
                     {!! Form::hidden('lat') !!}
