@@ -35,6 +35,31 @@ class MicropostsController extends Controller
         return view('microposts.show',$data);
     }
     
+      //編集    
+    public function edit($id)
+    {
+        $user = \Auth::user();
+        $micropost = Micropost::find($id);
+        $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
+        $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
+        return view('microposts.edit',$data);
+        
+    }
+    
+    public function update(Request $request, $id)
+    {   
+        $user = \Auth::user();
+        $micropost = Micropost::find($id);
+        $micropost->search_tag=$request->search_tag;
+        $micropost->map_lat = $request->lat;
+        $micropost->map_long = $request->long;
+        
+        $micropost->save();
+        $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
+        $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
+        return view('microposts.show', $data)->with('updated','データは更新されました。');
+    }
+    
     public function create()
     {
         $data = [];
@@ -121,25 +146,7 @@ class MicropostsController extends Controller
         return view('microposts.all_maps', ['data' => $data]);
     }
     
-     //ユーザー情報　編集    
-    public function edit($id)
-    {
-        $micropost = Micropost::find($id);
-        return view('microposts.edit', ['micropost' => $micropost]);
-        
-    }
-    
-    public function update(Request $request, $id)
-    {   
-        $micropost = Micropost::find($id);
-        $micropost->search_tag=$request->search_tag;
-        $micropost->map_lat = $request->lat;
-        $micropost->map_long = $request->long;
-        
-        $micropost->save();
-        
-        return view('microposts.show', ['micropost' =>$micropost ])->with('updated','データは更新されました。');
-    }
+   
     
     
 }
