@@ -5,9 +5,10 @@
 @if (\Session::has('success'))
     <div class="alert alert-success">{!! \Session::get('success') !!}</div>
 @endif
+
 <div style="padding-left:0px;" class="col-xs-12 col-md-12">
 <img  class="cat_image" src="{{ secure_asset($micropost->image_path)}}">
-
+<p class="p">User name : {!! link_to_route('users.show', $micropost->user->name , ['id' => $micropost->user_id]) !!}</p>
 <p class="p">検索タグ: {{ $micropost->search_tag }}</p>
 <p class="p">POST_ID: {{$micropost->id}}</p>
 <div>
