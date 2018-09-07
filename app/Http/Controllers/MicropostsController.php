@@ -38,8 +38,11 @@ class MicropostsController extends Controller
       //編集    
     public function edit($id)
     {
+        $data = [];
         $user = \Auth::user();
         $micropost = Micropost::find($id);
+   
+        // dd($micropost->map_long);
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
         return view('microposts.edit',$data);
@@ -48,12 +51,23 @@ class MicropostsController extends Controller
     
     public function update(Request $request, $id)
     {   
+        $data = [];
+        $validator = Validator::make($request->all(),[
+        // 'photo' => 'required|image|max:5000',
+        'search_tag' => 'nullable',
+        'lat' => 'required',
+        'long' => 'required',
+        ]);
+        
+        if ($validator->fails()){
+            return back()->withErrors($validator)->withInput();
+        }
+        
         $user = \Auth::user();
         $micropost = Micropost::find($id);
-        $micropost->search_tag=$request->search_tag;
+        $micropost->search_tag = $request->search_tag;
         $micropost->map_lat = $request->lat;
         $micropost->map_long = $request->long;
-        
         $micropost->save();
         $comments = $micropost->comments()->orderBy('created_at', 'desc')->get();
         $data = ['user' => $user, 'micropost' => $micropost, 'comments'=>$comments];
@@ -62,6 +76,7 @@ class MicropostsController extends Controller
     
     public function create()
     {
+        
         $data = [];
         $user = \Auth::user();
         $microposts =$user->microposts();

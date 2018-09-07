@@ -38,11 +38,13 @@ window.onload=function() {
 //地図の表示と中心位置の緯度・経度取得
   var lati = parseFloat(@json($micropost->map_lat));
   var long = parseFloat(@json($micropost->map_long));
+  // console.log('lati',lati,'long',long);
+  // var location = {lat:35.681167, lng: 139.767052}; 
   var location = {lat:lati, lng:long};
   console.log("edit-locatin",location);
   var options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
   var map = new google.maps.Map(document.getElementById('map'), options);
-  var marker=new google.maps.Marker({position: location,map: map,});
+  var marker=new google.maps.Marker({position: location, map: map,});
   
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
@@ -83,7 +85,6 @@ window.onload=function() {
     };
 
     
-
     if (place.geometry.viewport) {
       // Only geocodes have viewport.
       bounds.union(place.geometry.viewport);
@@ -92,11 +93,12 @@ window.onload=function() {
     }
   });
   map.fitBounds(bounds);
- });
+ }
+);
 
 
 
-  google.maps.event.addListener(map, 'center_changed', function(){
+google.maps.event.addListener(map, 'center_changed', function(){
     location = map.getCenter();
     marker.setPosition(location);
     console.log(location.lat(),location.lng());

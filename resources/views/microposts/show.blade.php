@@ -24,7 +24,7 @@
 <br>
 <div>
     @if (Auth::id() === $micropost->user_id)
-        {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id,'class' => "btn btn-info pull-right"]) !!}
+        {!! link_to_route('microposts.edit', 'データを編集', ['id' => $micropost->id]) !!}
     @endif
 </div>
 
@@ -73,8 +73,8 @@
 
 <script >
 window.onload=function(){
-  var lati = parseFloat(@json($micropost -> map_lat));
-  var long = parseFloat(@json($micropost -> map_long));
+  var lati = parseFloat(@json($micropost->map_lat));
+  var long = parseFloat(@json($micropost->map_long));
   var location = {lat:lati, lng:long};
   console.log("showlocatin",location);
   var options = { zoom: 10, center: location, disableDoubleClickZoom: true }; 
