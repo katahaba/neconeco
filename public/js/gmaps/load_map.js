@@ -70,12 +70,12 @@ window.onload=function() {
   google.maps.event.addListener(map, 'center_changed', function(){
     location = map.getCenter();
     marker.setPosition(location);
-    console.log(location.lat(),location.lng());
+    console.log(location.lat,location.lng);
   });
   
   $('form').submit(function(){
-    $('[name="lat"]').val(location.lat());
-    $('[name="long"]').val(location.lng());
+    $('[name="lat"]').val(location.lat);
+    $('[name="long"]').val(location.lng);
   });
     
   
